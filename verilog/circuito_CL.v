@@ -19,11 +19,11 @@ module circuito_CL (
 
     wire fimTWire;
     wire registraRWire;
-    wire zeraTwire;
-    wire zeraRwire;
-    wire zeraPwire;
-    wire contaPwire;
-    wire contaTwire;
+    wire zeraTWire;
+    wire zeraRWire;
+    wire zeraPWire;
+    wire contaPWire;
+    wire contaTWire;
     wire decresceTWire;
     wire acertouWire;
     wire temJogadaWire;
@@ -45,9 +45,9 @@ module circuito_CL (
         .novaJogada         ( novaJogadaWire ),
         .registraR          ( registraRWire ),
         .zeraT              ( zeraTWire ),
-        .zeraR              ( zeraRwire ),
+        .zeraR              ( zeraRWire ),
         .zeraP              ( zeraPWire ),
-        .contaP             ( zeraTWire ),
+        .contaP             ( contaPWire ),
         .contaT             ( contaTWire ),
         .decresceT          ( decresceTWire ),
         .jogou              ( temJogada ),
@@ -72,12 +72,12 @@ module circuito_CL (
         .temJogada    ( temJogadaWire ),
         .terminar     ( terminar ),
         //saida
-        .registraR    ( registarRWire ),
-        .zeraT        ( zeraTwire ),
+        .registraR    ( registraRWire ),
+        .zeraT        ( zeraTWire ),
         .zeraR        ( zeraRWire ),
         .zeraP        ( zeraPWire ),
         .contaP       ( contaPWire ),
-        .contaT       ( contaTwire ),
+        .contaT       ( contaTWire ),
         .decresceT    ( decresceTWire ),
         .db_estado    ( db_estadoWire ),
         .geraNova     ( novaJogadaWire )

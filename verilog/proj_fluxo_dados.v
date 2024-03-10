@@ -25,8 +25,8 @@ module proj_fluxo_dados (
     wire [3:0] s_coluna;
     wire [3:0] s_linhaGerador;
     wire [3:0] s_colunaGerador; 
-    wire igualColuna;
     wire acertouLinha;
+    wire acertouColuna;
 
     gerador_jogadas gerador (
         .clock ( clock ),

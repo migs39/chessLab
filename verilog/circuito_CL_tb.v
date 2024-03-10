@@ -92,8 +92,8 @@ module circuito_CL_tb;
       // Teste 3. jogar + contar 1 ponto
       caso = 3;
       @(negedge clock_in);
-      colunas_in  = coluna_tb;
-      linhas_in = linha_tb;
+      colunas_in  = 4'b0010;
+      linhas_in = 4'b0010;
       #(10*clockPeriod);
       temJogada_in = 1'b1;
       #(2*clockPeriod);
@@ -119,7 +119,7 @@ module circuito_CL_tb;
       terminar_in = 1'b1;
       #(10*clockPeriod);
       terminar_in = 1'b0;
-      // espera
+      // esperar
       #(10*clockPeriod);
 
 
