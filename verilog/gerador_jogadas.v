@@ -6,28 +6,32 @@ module gerador_jogadas(
   output reg [3:0] linha
 );
 
-  reg [2:0] auxLinha;
-  reg [2:0] auxColuna;
+  reg [3:0] auxLinha;
+  reg [3:0] auxColuna;
 
 
-  always @(posedge clock) begin
+  always @(posedge clock or posedge reset or posedge novaJogada) begin
     if(reset) begin
-      auxLinha <= 3'b000;
-      auxColuna <= 3'b000;
+      auxLinha <= 4'b0001;
+      auxColuna <= 4'b0001;
     end
-    if (auxLinha == 3'b111) begin
-        if (auxColuna == 3'b111) begin
-            auxColuna <= 3'b000;
+    if (clock) begin
+      if (auxLinha == 4'b1000) begin
+        if (auxColuna == 4'b1000) begin
+          auxColuna <= 4'b0001;
         end else begin
-            auxColuna <= auxColuna + 3'b001;
+          auxColuna <= auxColuna + 4'b0001;
         end
-        auxLinha <= 3'b000;
-    end else begin
-      auxLinha <= auxLinha + 3'b001;
+        auxLinha <= 4'b0001;
+      end else begin
+        auxLinha <= auxLinha + 4'b0001;
+      end
     end
     if (novaJogada) begin
-        coluna <= 4'b0001;// {1'b0, auxColuna}; //+ // ^ 4'b1010 
-        linha <= 4'b0001;// {1'b0, auxLinha}; //+ // ^ 4'b1010 
+        coluna <= 4'b0001; 
+        // coluna <= auxColuna;
+        linha <= 4'b0001;
+        // linha <= auxLinha;
     end 
   end
 

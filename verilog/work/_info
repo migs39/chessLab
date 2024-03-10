@@ -10,7 +10,7 @@ z2
 cModel Technology
 dD:/USP/Computacao/quadrimester1/pcs3635/lab07_desafio
 vcircuito_CL
-Z0 !s110 1710102169
+Z0 !s110 1710106412
 !i10b 1
 !s100 5mlB1V1jg<Zl3UW1YC2hC0
 Z1 !s11b Dg1SIo80bB@j0V0VzS_@n1
@@ -20,13 +20,13 @@ Z3 dD:/USP/Computacao/quadrimester1/pcs3635/projeto_final/chessLab/verilog
 w1710101103
 8D:/USP/Computacao/quadrimester1/pcs3635/projeto_final/chessLab/verilog/circuito_CL.v
 FD:/USP/Computacao/quadrimester1/pcs3635/projeto_final/chessLab/verilog/circuito_CL.v
-!i122 97
+!i122 163
 L0 1 119
 Z4 OV;L;2020.1;71
 r1
 !s85 0
 31
-Z5 !s108 1710102169.000000
+Z5 !s108 1710106412.000000
 !s107 D:/USP/Computacao/quadrimester1/pcs3635/projeto_final/chessLab/verilog/circuito_CL.v|
 !s90 -reportprogress|300|-work|work|-stats=none|D:/USP/Computacao/quadrimester1/pcs3635/projeto_final/chessLab/verilog/circuito_CL.v|
 !i113 1
@@ -44,7 +44,7 @@ R3
 Z8 w1710098118
 8D:/USP/Computacao/quadrimester1/pcs3635/projeto_final/chessLab/verilog/circuito_CL_tb.v
 FD:/USP/Computacao/quadrimester1/pcs3635/projeto_final/chessLab/verilog/circuito_CL_tb.v
-!i122 98
+!i122 164
 L0 4 130
 R4
 r1
@@ -58,7 +58,7 @@ R6
 R7
 ncircuito_@c@l_tb
 vcomparador_85
-R0
+Z9 !s110 1710106413
 !i10b 1
 !s100 bckB8^W=VE]I2a21^PB@D0
 R1
@@ -68,7 +68,7 @@ R3
 R8
 8D:/USP/Computacao/quadrimester1/pcs3635/projeto_final/chessLab/verilog/comparador_85.v
 FD:/USP/Computacao/quadrimester1/pcs3635/projeto_final/chessLab/verilog/comparador_85.v
-!i122 99
+!i122 165
 L0 16 14
 R4
 r1
@@ -81,7 +81,7 @@ R5
 R6
 R7
 vcontador_m
-R0
+R9
 !i10b 1
 !s100 AG2^G3YggOB8z[HX8BT_<0
 R1
@@ -91,20 +91,20 @@ R3
 R8
 8D:/USP/Computacao/quadrimester1/pcs3635/projeto_final/chessLab/verilog/contador_m.v
 FD:/USP/Computacao/quadrimester1/pcs3635/projeto_final/chessLab/verilog/contador_m.v
-!i122 100
-L0 1 36
+!i122 166
+Z10 L0 1 36
 R4
 r1
 !s85 0
 31
-R5
+Z11 !s108 1710106413.000000
 !s107 D:/USP/Computacao/quadrimester1/pcs3635/projeto_final/chessLab/verilog/contador_m.v|
 !s90 -reportprogress|300|-work|work|-stats=none|D:/USP/Computacao/quadrimester1/pcs3635/projeto_final/chessLab/verilog/contador_m.v|
 !i113 1
 R6
 R7
 vedge_detector
-R0
+R9
 !i10b 1
 !s100 b=6PQ:nFojW4z?d;AGW=D0
 R1
@@ -114,43 +114,43 @@ R3
 R8
 8D:/USP/Computacao/quadrimester1/pcs3635/projeto_final/chessLab/verilog/edge_detector.v
 FD:/USP/Computacao/quadrimester1/pcs3635/projeto_final/chessLab/verilog/edge_detector.v
-!i122 101
+!i122 167
 L0 21 23
 R4
 r1
 !s85 0
 31
-R5
+R11
 !s107 D:/USP/Computacao/quadrimester1/pcs3635/projeto_final/chessLab/verilog/edge_detector.v|
 !s90 -reportprogress|300|-work|work|-stats=none|D:/USP/Computacao/quadrimester1/pcs3635/projeto_final/chessLab/verilog/edge_detector.v|
 !i113 1
 R6
 R7
 vgerador_jogadas
-Z9 !s110 1710102170
+R9
 !i10b 1
-!s100 U7aohb4870bTbnGG@M10^1
+!s100 9Ce:Ue=@8?LVmQcB7n>F;3
 R1
-Ij3:zz0i@61>S`fjgDQmZk2
+IfLgl7aPB`Y2>8I9AjeNPi1
 R2
 R3
-w1710102164
+w1710106400
 8D:/USP/Computacao/quadrimester1/pcs3635/projeto_final/chessLab/verilog/gerador_jogadas.v
 FD:/USP/Computacao/quadrimester1/pcs3635/projeto_final/chessLab/verilog/gerador_jogadas.v
-!i122 102
-L0 1 34
+!i122 168
+R10
 R4
 r1
 !s85 0
 31
-R5
+R11
 !s107 D:/USP/Computacao/quadrimester1/pcs3635/projeto_final/chessLab/verilog/gerador_jogadas.v|
 !s90 -reportprogress|300|-work|work|-stats=none|D:/USP/Computacao/quadrimester1/pcs3635/projeto_final/chessLab/verilog/gerador_jogadas.v|
 !i113 1
 R6
 R7
 vhexa7seg
-R9
+Z12 !s110 1710106414
 !i10b 1
 !s100 ^ldcN:Zl`^?4Tnh8I@Z332
 R1
@@ -160,20 +160,20 @@ R3
 R8
 8D:/USP/Computacao/quadrimester1/pcs3635/projeto_final/chessLab/verilog/hexa7seg.v
 FD:/USP/Computacao/quadrimester1/pcs3635/projeto_final/chessLab/verilog/hexa7seg.v
-!i122 103
+!i122 169
 L0 23 38
 R4
 r1
 !s85 0
 31
-Z10 !s108 1710102170.000000
+R11
 !s107 D:/USP/Computacao/quadrimester1/pcs3635/projeto_final/chessLab/verilog/hexa7seg.v|
 !s90 -reportprogress|300|-work|work|-stats=none|D:/USP/Computacao/quadrimester1/pcs3635/projeto_final/chessLab/verilog/hexa7seg.v|
 !i113 1
 R6
 R7
 vhexa7segABC
-R9
+R12
 !i10b 1
 !s100 ?QEBdR>PIgfd^P>HenXao1
 R1
@@ -183,13 +183,13 @@ R3
 R8
 8D:/USP/Computacao/quadrimester1/pcs3635/projeto_final/chessLab/verilog/hexa7segABC.v
 FD:/USP/Computacao/quadrimester1/pcs3635/projeto_final/chessLab/verilog/hexa7segABC.v
-!i122 104
+!i122 170
 L0 23 30
 R4
 r1
 !s85 0
 31
-R10
+Z13 !s108 1710106414.000000
 !s107 D:/USP/Computacao/quadrimester1/pcs3635/projeto_final/chessLab/verilog/hexa7segABC.v|
 !s90 -reportprogress|300|-work|work|-stats=none|D:/USP/Computacao/quadrimester1/pcs3635/projeto_final/chessLab/verilog/hexa7segABC.v|
 !i113 1
@@ -197,7 +197,7 @@ R6
 R7
 nhexa7seg@a@b@c
 vproj_fluxo_dados
-R9
+R12
 !i10b 1
 !s100 3T6M_j_FE6V0`3cfWG<1>2
 R1
@@ -207,20 +207,20 @@ R3
 w1710101760
 8D:/USP/Computacao/quadrimester1/pcs3635/projeto_final/chessLab/verilog/proj_fluxo_dados.v
 FD:/USP/Computacao/quadrimester1/pcs3635/projeto_final/chessLab/verilog/proj_fluxo_dados.v
-!i122 105
+!i122 171
 L0 1 112
 R4
 r1
 !s85 0
 31
-R10
+R13
 !s107 D:/USP/Computacao/quadrimester1/pcs3635/projeto_final/chessLab/verilog/proj_fluxo_dados.v|
 !s90 -reportprogress|300|-work|work|-stats=none|D:/USP/Computacao/quadrimester1/pcs3635/projeto_final/chessLab/verilog/proj_fluxo_dados.v|
 !i113 1
 R6
 R7
 vregistrador_4
-R9
+R12
 !i10b 1
 !s100 45NaE0zN5R1c;nb0e8L`23
 R1
@@ -230,20 +230,20 @@ R3
 R8
 8D:/USP/Computacao/quadrimester1/pcs3635/projeto_final/chessLab/verilog/registrador_4.v
 FD:/USP/Computacao/quadrimester1/pcs3635/projeto_final/chessLab/verilog/registrador_4.v
-!i122 106
+!i122 172
 L0 13 20
 R4
 r1
 !s85 0
 31
-R10
+R13
 !s107 D:/USP/Computacao/quadrimester1/pcs3635/projeto_final/chessLab/verilog/registrador_4.v|
 !s90 -reportprogress|300|-work|work|-stats=none|D:/USP/Computacao/quadrimester1/pcs3635/projeto_final/chessLab/verilog/registrador_4.v|
 !i113 1
 R6
 R7
 vunidade_controle
-R9
+R12
 !i10b 1
 !s100 WVjNlgVHTb4oW>NQ5TK4=0
 R1
@@ -253,13 +253,13 @@ R3
 w1710101020
 8D:/USP/Computacao/quadrimester1/pcs3635/projeto_final/chessLab/verilog/unidade_de_controle.v
 FD:/USP/Computacao/quadrimester1/pcs3635/projeto_final/chessLab/verilog/unidade_de_controle.v
-!i122 107
+!i122 173
 L0 2 90
 R4
 r1
 !s85 0
 31
-R10
+R13
 !s107 D:/USP/Computacao/quadrimester1/pcs3635/projeto_final/chessLab/verilog/unidade_de_controle.v|
 !s90 -reportprogress|300|-work|work|-stats=none|D:/USP/Computacao/quadrimester1/pcs3635/projeto_final/chessLab/verilog/unidade_de_controle.v|
 !i113 1
