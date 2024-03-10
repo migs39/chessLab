@@ -1,4 +1,4 @@
-<table>
+<center> <table>
   <tr>
     <th> Estado </th>
     <th> Código </th>
@@ -54,4 +54,4 @@
     <td> F </td>
   </tr>
 
-</table>
+</table> </center>
