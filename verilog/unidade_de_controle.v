@@ -12,6 +12,7 @@ module unidade_controle (
     output reg zeraT,
     output reg zeraR,
     output reg zeraP,
+    output reg zeraG,
     output reg contaP,
     output reg contaT,
     output reg decresceT,
@@ -66,6 +67,7 @@ module unidade_controle (
         zeraT = (Eatual == iniciaElementos) ? 1'b1 : 1'b0;
         zeraR = (Eatual == fimJogada) ? 1'b1 : 1'b0;
         zeraP = (Eatual == iniciaElementos) ? 1'b1 : 1'b0;
+        zeraG = (Eatual == iniciaElementos) ? 1'b1 : 1'b0;
         contaP = (Eatual == contaPonto) ? 1'b1 : 1'b0;
         contaT = (Eatual == inicial || Eatual == iniciaElementos || Eatual == fim ) ? 1'b0 : 1'b1; // saida invertida por conta dos estados escolhidos
         decresceT = (Eatual == decresce) ? 1'b1 : 1'b0;

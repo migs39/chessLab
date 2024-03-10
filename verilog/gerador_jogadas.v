@@ -1,5 +1,6 @@
 module gerador_jogadas(
   input        clock,
+  input        reset,
   input        novaJogada,
   output reg [3:0] coluna,
   output reg [3:0] linha
@@ -10,6 +11,10 @@ module gerador_jogadas(
 
 
   always @(posedge clock) begin
+    if(reset) begin
+      auxLinha <= 3'b000;
+      auxColuna <= 3'b000;
+    end
     if (auxLinha == 3'b111) begin
         if (auxColuna == 3'b111) begin
             auxColuna <= 3'b000;
@@ -21,8 +26,8 @@ module gerador_jogadas(
       auxLinha <= auxLinha + 3'b001;
     end
     if (novaJogada) begin
-        coluna = 4'b0010;//(auxColuna ^ 3'b011) + 4'b0001;
-        linha = 4'b0010;//(auxLinha ^ 3'b101)  + 4'b0001; 
+        coluna <= 4'b0001;// {1'b0, auxColuna}; //+ // ^ 4'b1010 
+        linha <= 4'b0001;// {1'b0, auxLinha}; //+ // ^ 4'b1010 
     end 
   end
 

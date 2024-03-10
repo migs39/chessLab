@@ -22,6 +22,7 @@ module circuito_CL (
     wire zeraTWire;
     wire zeraRWire;
     wire zeraPWire;
+    wire zeraGWire;
     wire contaPWire;
     wire contaTWire;
     wire decresceTWire;
@@ -47,6 +48,7 @@ module circuito_CL (
         .zeraT              ( zeraTWire ),
         .zeraR              ( zeraRWire ),
         .zeraP              ( zeraPWire ),
+        .zeraG              ( zeraGWire ),
         .contaP             ( contaPWire ),
         .contaT             ( contaTWire ),
         .decresceT          ( decresceTWire ),
@@ -76,6 +78,7 @@ module circuito_CL (
         .zeraT        ( zeraTWire ),
         .zeraR        ( zeraRWire ),
         .zeraP        ( zeraPWire ),
+        .zeraG        ( zeraGWire ),
         .contaP       ( contaPWire ),
         .contaT       ( contaTWire ),
         .decresceT    ( decresceTWire ),

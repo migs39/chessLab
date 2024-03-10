@@ -7,6 +7,7 @@ module proj_fluxo_dados (
  input zeraT,
  input zeraR,
  input zeraP,
+ input zeraG,
  input contaP,
  input contaT,
  input decresceT,
@@ -30,6 +31,7 @@ module proj_fluxo_dados (
 
     gerador_jogadas gerador (
         .clock ( clock ),
+        .reset  (zeraG),
         .novaJogada ( novaJogada ),
         .linha   ( s_linhaGerador ),
         .coluna  ( s_colunaGerador )
@@ -40,8 +42,8 @@ module proj_fluxo_dados (
         .zera_s ( zeraT ),
         .conta  ( contaT ),
         .decresce ( decresceT ),
-    //    .tempoDrec ( 4'd1000 ),
-        // .Q      (  ),
+        //.tempoDrec ( 4'd1000 ),
+        //.Q      (  ),
         .fim    ( fimT )
     ); 
 

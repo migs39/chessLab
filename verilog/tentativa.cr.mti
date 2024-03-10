@@ -1,0 +1,74 @@
+D:/USP/Computacao/quadrimester1/pcs3635/projeto_final/chessLab/verilog/comparador_85.v {1 {vlog -work work -stats=none D:/USP/Computacao/quadrimester1/pcs3635/projeto_final/chessLab/verilog/comparador_85.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module comparador_85
+
+Top level modules:
+	comparador_85
+
+} {} {}} D:/USP/Computacao/quadrimester1/pcs3635/projeto_final/chessLab/verilog/contador_m.v {1 {vlog -work work -stats=none D:/USP/Computacao/quadrimester1/pcs3635/projeto_final/chessLab/verilog/contador_m.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module contador_m
+
+Top level modules:
+	contador_m
+
+} {} {}} D:/USP/Computacao/quadrimester1/pcs3635/projeto_final/chessLab/verilog/unidade_de_controle.v {1 {vlog -work work -stats=none D:/USP/Computacao/quadrimester1/pcs3635/projeto_final/chessLab/verilog/unidade_de_controle.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module unidade_controle
+
+Top level modules:
+	unidade_controle
+
+} {} {}} D:/USP/Computacao/quadrimester1/pcs3635/projeto_final/chessLab/verilog/registrador_4.v {1 {vlog -work work -stats=none D:/USP/Computacao/quadrimester1/pcs3635/projeto_final/chessLab/verilog/registrador_4.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module registrador_4
+
+Top level modules:
+	registrador_4
+
+} {} {}} D:/USP/Computacao/quadrimester1/pcs3635/projeto_final/chessLab/verilog/proj_fluxo_dados.v {1 {vlog -work work -stats=none D:/USP/Computacao/quadrimester1/pcs3635/projeto_final/chessLab/verilog/proj_fluxo_dados.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module proj_fluxo_dados
+
+Top level modules:
+	proj_fluxo_dados
+
+} {} {}} D:/USP/Computacao/quadrimester1/pcs3635/projeto_final/chessLab/verilog/hexa7segABC.v {1 {vlog -work work -stats=none D:/USP/Computacao/quadrimester1/pcs3635/projeto_final/chessLab/verilog/hexa7segABC.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module hexa7segABC
+
+Top level modules:
+	hexa7segABC
+
+} {} {}} D:/USP/Computacao/quadrimester1/pcs3635/projeto_final/chessLab/verilog/teste_tb.v {1 {vlog -work work -stats=none D:/USP/Computacao/quadrimester1/pcs3635/projeto_final/chessLab/verilog/teste_tb.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+
+} {} {}} D:/USP/Computacao/quadrimester1/pcs3635/projeto_final/chessLab/verilog/hexa7seg.v {1 {vlog -work work -stats=none D:/USP/Computacao/quadrimester1/pcs3635/projeto_final/chessLab/verilog/hexa7seg.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module hexa7seg
+
+Top level modules:
+	hexa7seg
+
+} {} {}} D:/USP/Computacao/quadrimester1/pcs3635/projeto_final/chessLab/verilog/circuito_CL_tb.v {1 {vlog -work work -stats=none D:/USP/Computacao/quadrimester1/pcs3635/projeto_final/chessLab/verilog/circuito_CL_tb.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module circuito_CL_tb
+
+Top level modules:
+	circuito_CL_tb
+
+} {} {}} D:/USP/Computacao/quadrimester1/pcs3635/projeto_final/chessLab/verilog/edge_detector.v {1 {vlog -work work -stats=none D:/USP/Computacao/quadrimester1/pcs3635/projeto_final/chessLab/verilog/edge_detector.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module edge_detector
+
+Top level modules:
+	edge_detector
+
+} {} {}} D:/USP/Computacao/quadrimester1/pcs3635/projeto_final/chessLab/verilog/circuito_CL.v {1 {vlog -work work -stats=none D:/USP/Computacao/quadrimester1/pcs3635/projeto_final/chessLab/verilog/circuito_CL.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module circuito_CL
+
+Top level modules:
+	circuito_CL
+
+} {} {}}
