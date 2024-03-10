@@ -23,7 +23,7 @@ module exp5_unidade_controle (
     parameter iniciaElementos = 4'b0001;  // 1
     parameter espera = 4'b0010;  // 2
     parameter registra = 4'b0011;  // 3
-    parameter comparacao = 4'b0100;  // 4
+    parameter compara = 4'b0100;  // 4
     parameter decresce = 4'b1110;  // E
     parameter contaPonto = 4'b1010;  // A
     parameter geraJogada = 4'b0110;  // 6 porque parece um g
@@ -48,7 +48,7 @@ module exp5_unidade_controle (
             iniciaElementos: Eprox = espera;
             espera:          Eprox = fimT ? fim : (temJogada ? registra : espera);
             registra:        Eprox = compara;
-            comparacao:      Eprox = acertou ? (contaPonto : decresce);
+            compara:      Eprox = acertou ? (contaPonto : decresce);
             decresce:        Eprox = fimJogada;
             contaPonto:      Eprox = geraJogada;
             geraJogada:      Eprox = fimJogada;
