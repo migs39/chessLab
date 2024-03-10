@@ -8,7 +8,7 @@ module circuito_CL (
  input reset,
  output [6:0] pontos1,
  output [6:0] pontos2,
- output errou,,
+ output errou,
  output db_acertou,
  output [6:0] linhaEsperada,
  output [6:0] colunaEsperada,
@@ -25,7 +25,6 @@ module circuito_CL (
     wire contaPwire;
     wire contaTwire;
     wire decresceTWire;
-    wire fimTWire;
     wire acertouWire;
     wire temJogadaWire;
     wire novaJogadaWire;
@@ -35,13 +34,14 @@ module circuito_CL (
     wire [3:0]colunaEsperadaWire;
     wire [3:0]db_linhaWire;
     wire [3:0]db_colunaWire;
+    wire [3:0]db_estadoWire;
  
 
     proj_fluxo_dados FD(
         //entrada
         .clock              ( clock ),
         .jogadaColuna       ( jogadaColuna ),
-        .jogadaFileira      ( jogadaFileira ),
+        .jogadaLinha        ( jogadaFileira ),
         .novaJogada         ( novaJogadaWire ),
         .registraR          ( registraRWire ),
         .zeraT              ( zeraTWire ),
@@ -59,7 +59,7 @@ module circuito_CL (
         .colunaEsperada     ( colunaEsperadaWire ),
         .pontos             ( pontosWire ),
         .db_linha           ( db_linhaWire ),
-        .db_coluna          ( db_colunaWire ),
+        .db_coluna          ( db_colunaWire )
     );
 
     unidade_controle UC (
@@ -111,6 +111,6 @@ module circuito_CL (
     assign db_acertou = acertouWire; 
     assign errou = decresceTWire; 
     //variaveis para testbench
-    assign db_coluna_tb = colunaEsperadaWire
-    assign db_linha_tb = linhaEsperadaWire
+    assign db_coluna_tb = colunaEsperadaWire;
+    assign db_linha_tb = linhaEsperadaWire;
 endmodule

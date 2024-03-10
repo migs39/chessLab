@@ -15,7 +15,7 @@ module unidade_controle (
     output reg contaP,
     output reg contaT,
     output reg decresceT,
-    output reg db_estado,
+    output reg [3:0] db_estado,
     output reg geraNova
 );
 
@@ -49,12 +49,12 @@ module unidade_controle (
             iniciaElementos: Eprox = espera;
             espera:          Eprox = fimT ? fim : (temJogada ? registra : espera);
             registra:        Eprox = compara;
-            compara:         Eprox = acertou ? (contaPonto : decresce);
+            compara:         Eprox = acertou ? contaPonto : decresce;
             decresce:        Eprox = fimJogada;
             contaPonto:      Eprox = geraJogada;
             geraJogada:      Eprox = fimJogada;
             fimJogada:       Eprox = espera;
-            fim:             Eprox = terminar ? (inicial : fim);
+            fim:             Eprox = terminar ? inicial : fim;
             default:         Eprox = inicial;
         endcase
     end
@@ -70,7 +70,19 @@ module unidade_controle (
         contaT = (Eatual == inicial || Eatual == iniciaElementos || Eatual == fim ) ? 1'b0 : 1'b1; // saida invertida por conta dos estados escolhidos
         decresceT = (Eatual == decresce) ? 1'b1 : 1'b0;
         geraNova = (Eatual == geraJogada || Eatual == iniciaElementos) ? 1'b1 : 1'b0;
-        db_estado = Eatual;
+
+        case (Eatual)
+            inicial:         db_estado = 4'b0000;  // 0
+            iniciaElementos: db_estado = 4'b0001;  // 1
+            espera:          db_estado = 4'b0010;  // 2
+            registra:        db_estado = 4'b0011;  // 3
+            compara:         db_estado = 4'b0100;  // 4
+            decresce:        db_estado = 4'b1110;  // E
+            contaPonto:      db_estado = 4'b1010;  // A
+            geraJogada:      db_estado = 4'b0110;  // 6 porque parece um g
+            fimJogada:       db_estado = 4'b1001; // 9 porque eh o fim dos decimais
+            default:         db_estado = 4'b1111;  // F
+        endcase
     end
 
 endmodule

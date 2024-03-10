@@ -3,7 +3,7 @@ module gerador_jogadas(
     input        novaJogada,
     output [3:0] coluna,
     output [3:0] linha
-)
+);
     reg auxLinha;
     reg auxColuna;
 

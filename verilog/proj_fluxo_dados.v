@@ -40,7 +40,7 @@ module proj_fluxo_dados (
         .zera_s ( zeraT ),
         .conta  ( contaT ),
         .decresce ( decresceT ),
-        .tempoDrec ( 4'd1000 ),
+    //    .tempoDrec ( 4'd1000 ),
         // .Q      (  ),
         .fim    ( fimT )
     ); 
@@ -50,7 +50,7 @@ module proj_fluxo_dados (
         .zera_s ( zeraP ),
         .conta  ( contaP ),
         .decresce ( 1'b0 ),
-        .tempoDrec ( 4'd0 ),
+    //    .tempoDrec ( 4'd0 ),
         .Q      ( pontos )
         //.fim    ( )
     ); 
