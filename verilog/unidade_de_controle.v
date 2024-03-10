@@ -81,7 +81,8 @@ module unidade_controle (
             contaPonto:      db_estado = 4'b1010;  // A
             geraJogada:      db_estado = 4'b0110;  // 6 porque parece um g
             fimJogada:       db_estado = 4'b1001; // 9 porque eh o fim dos decimais
-            default:         db_estado = 4'b1111;  // F
+            fim:             db_estado = 4'b1111;  // F
+            default:         db_estado = 4'b1101;  // D
         endcase
     end
 
