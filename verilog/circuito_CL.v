@@ -1,18 +1,20 @@
-module circuito_exp5 (
+module circuito_CL (
  input clock,
  input iniciar,
- input jogadaFileira [3:0],
- input jogadaColuna [3:0],
+ input [3:0] jogadaFileira,
+ input [3:0] jogadaColuna,
  input temJogada,
  input terminar,
  input reset,
- output pontos1 [6:0],
- output pontos2 [6:0],
+ output [6:0] pontos1,
+ output [6:0] pontos2,
  output errou,,
  output db_acertou,
  output [6:0] linhaEsperada,
  output [6:0] colunaEsperada,
- output [6:0] db_estado
+ output [6:0] db_estado,
+ output [3:0] db_coluna_tb,
+ output [3:0] db_linha_tb
 );
 
     wire fimTWire;
@@ -26,6 +28,7 @@ module circuito_exp5 (
     wire fimTWire;
     wire acertouWire;
     wire temJogadaWire;
+    wire novaJogadaWire;
 
     wire [7:0]pontosWire;
     wire [3:0]linhaEsperadaWire;
@@ -39,7 +42,7 @@ module circuito_exp5 (
         .clock              ( clock ),
         .jogadaColuna       ( jogadaColuna ),
         .jogadaFileira      ( jogadaFileira ),
-        .novaJogada         ( jogadaFeita ),
+        .novaJogada         ( novaJogadaWire ),
         .registraR          ( registraRWire ),
         .zeraT              ( zeraTWire ),
         .zeraR              ( zeraRwire ),
@@ -47,7 +50,7 @@ module circuito_exp5 (
         .contaP             ( zeraTWire ),
         .contaT             ( contaTWire ),
         .decresceT          ( decresceTWire ),
-        .temJogada          ( temJogada ),
+        .jogou              ( temJogada ),
         //saida
         .fimT               ( fimTWire ),
         .acertou            ( acertouWire ),
@@ -59,7 +62,7 @@ module circuito_exp5 (
         .db_coluna          ( db_colunaWire ),
     );
 
-    exp5_unidade_controle UC (
+    unidade_controle UC (
         //entrada
         .clock        ( clock ),
         .reset        ( reset ),
@@ -76,26 +79,27 @@ module circuito_exp5 (
         .contaP       ( contaPWire ),
         .contaT       ( contaTwire ),
         .decresceT    ( decresceTWire ),
-        .db_estado    ( db_estadoWire )
+        .db_estado    ( db_estadoWire ),
+        .geraNova     ( novaJogadaWire )
     );
 
     hexa7seg Hex0 (
-        .hexa               (linhaEsperada),
-        .display            (linhaEsperadaWire)
+        .hexa               (linhaEsperadaWire),
+        .display            (linhaEsperada)
     );
 
     hexa7segABC Hex1 (
-        .hexa               (colunaEsperada),
-        .display            (colunaEsperadaWire)
+        .hexa               (colunaEsperadaWire),
+        .display            (colunaEsperada)
     );
 
     hexa7seg Hex2 (
-        .hexa               (pontosWire[3:0]), //nao sei se ta certa essa notacao
+        .hexa               (pontosWire[3:0]), 
         .display            (pontos1)
     );
 
     hexa7seg Hex3 (
-        .hexa               (pontosWire[7:4]), //nao sei se ta certa essa notacao
+        .hexa               (pontosWire[7:4]), 
         .display            (pontos2)
     );
 
@@ -104,6 +108,9 @@ module circuito_exp5 (
         .display            (db_estado) 
     );
 
-    assign db_acertou = acertouWire; //Tem q adicionar um timer nisso pra mostrar por algum tempinho
-    assign errou = decresceTWire; //Tem q adicionar um timer nisso pra mostrar por algum tempinho
+    assign db_acertou = acertouWire; 
+    assign errou = decresceTWire; 
+    //variaveis para testbench
+    assign db_coluna_tb = colunaEsperadaWire
+    assign db_linha_tb = linhaEsperadaWire
 endmodule

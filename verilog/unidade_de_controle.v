@@ -1,5 +1,5 @@
 
-module exp5_unidade_controle (
+module unidade_controle (
     input clock,
     input reset,
     input iniciar,
@@ -15,7 +15,8 @@ module exp5_unidade_controle (
     output reg contaP,
     output reg contaT,
     output reg decresceT,
-    output reg db_estado
+    output reg db_estado,
+    output reg geraNova
 );
 
     // Define estados
@@ -48,7 +49,7 @@ module exp5_unidade_controle (
             iniciaElementos: Eprox = espera;
             espera:          Eprox = fimT ? fim : (temJogada ? registra : espera);
             registra:        Eprox = compara;
-            compara:      Eprox = acertou ? (contaPonto : decresce);
+            compara:         Eprox = acertou ? (contaPonto : decresce);
             decresce:        Eprox = fimJogada;
             contaPonto:      Eprox = geraJogada;
             geraJogada:      Eprox = fimJogada;
@@ -68,6 +69,7 @@ module exp5_unidade_controle (
         contaP = (Eatual == contaPonto) ? 1'b1 : 1'b0;
         contaT = (Eatual == inicial || Eatual == iniciaElementos || Eatual == fim ) ? 1'b0 : 1'b1; // saida invertida por conta dos estados escolhidos
         decresceT = (Eatual == decresce) ? 1'b1 : 1'b0;
+        geraNova = (Eatual == geraJogada || Eatual == iniciaElementos) ? 1'b1 : 1'b0;
         db_estado = Eatual;
     end
 

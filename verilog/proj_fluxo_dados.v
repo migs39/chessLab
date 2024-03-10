@@ -10,7 +10,7 @@ module proj_fluxo_dados (
  input contaP,
  input contaT,
  input decresceT,
- input temJogada,
+ input jogou,
  output fimT,
  output acertou,
  output temJogada,
@@ -39,7 +39,8 @@ module proj_fluxo_dados (
         .clock  ( clock ),
         .zera_s ( zeraT ),
         .conta  ( contaT ),
-        .decresce (decresceT),
+        .decresce ( decresceT ),
+        .tempoDrec ( 4'd1000 ),
         // .Q      (  ),
         .fim    ( fimT )
     ); 
@@ -49,6 +50,7 @@ module proj_fluxo_dados (
         .zera_s ( zeraP ),
         .conta  ( contaP ),
         .decresce ( 1'b0 ),
+        .tempoDrec ( 4'd0 ),
         .Q      ( pontos )
         //.fim    ( )
     ); 
@@ -89,7 +91,7 @@ module proj_fluxo_dados (
 
     edge_detector detector(
         .clock(clock),
-        .sinal(temJogada),
+        .sinal(jogou),
         .reset(zeraR),
         .pulso(temJogada)
     );
