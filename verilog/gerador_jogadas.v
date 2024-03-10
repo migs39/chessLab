@@ -23,7 +23,7 @@ module gerador_jogadas(
           auxColuna <= auxColuna + 4'b0001;
         end
         auxLinha <= 4'b0001;
-      end else begin
+      end else begin  
         auxLinha <= auxLinha + 4'b0001;
       end
     end
