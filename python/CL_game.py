@@ -3,7 +3,16 @@ import sys
 
 black = (0, 0, 0)
 white = (255, 255, 255)
-background = (61, 115, 133)
+background1 = (180, 180, 180)
+#tabuleiro azul
+bbwhite = (153, 217, 234)
+bbblack = (63, 72, 204)
+#tabuleiro de madeira
+wbwhite = (185, 122, 87)
+wbblack = (136, 0, 21)
+#tabuleiro esverdeado
+gbwhite = (239, 228,176)
+gbblcak = (34, 177, 76)
 
 
 def makeSqr(x_0, y_0, x, y, screen, color, name):
@@ -87,8 +96,8 @@ def main():
     y_0 = (screenHeight - y)//2
 
 
-    screen.fill(background)
-    CL_game(x_0, y_0, x, y, x_0, 10, 40, screen)
+    screen.fill(background1)
+    CL_game(x_0, y_0, x, y, x_0, 10, 40, screen, wbwhite, wbblack)
 
     # Encerra o pygame
     pygame.quit()
