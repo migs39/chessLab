@@ -1,7 +1,6 @@
 import pygame
 import sys
 
-
 black = (0, 0, 0)
 white = (255, 255, 255)
 background1 = (180, 180, 180)
@@ -15,6 +14,9 @@ wbblack = (136, 0, 21)
 gbwhite = (239, 228,176)
 gbblcak = (34, 177, 76)
 
+green = (0, 255, 0)
+red = (255, 0, 0)
+
 
 def makeSqr(x_0, y_0, x, y, screen, color, name):
     #cria a casa
@@ -24,7 +26,7 @@ def makeSqr(x_0, y_0, x, y, screen, color, name):
 
     
 
-def drawBoard(x_0, y_0, x, y, screen, c1 = white, c2 = black):
+def drawBoard(x_0, y_0, x, y, screen, c1 = white, c2 = black, highlight = None, hlColor = green):
     '''
     x e y são o tamanho do tabuleiro
     x_0 e y_0 são a posição do canto superior direito do tabuleiro
@@ -43,7 +45,10 @@ def drawBoard(x_0, y_0, x, y, screen, c1 = white, c2 = black):
             sqrX_0 = x_0 + collumn*sqrX
             sqrY_0 = y_0 + line*sqrY
             name = collumns[collumn]+lines[line]
-            makeSqr(sqrX_0, sqrY_0, sqrX, sqrY, screen, color, name)
+            if name == highlight:
+                makeSqr(sqrX_0, sqrY_0, sqrX, sqrY, screen, hlColor, name)
+            else:
+                makeSqr(sqrX_0, sqrY_0, sqrX, sqrY, screen, color, name)
             if color == c1:
                 color = c2
             elif color == c2:
@@ -58,8 +63,8 @@ def showTimer(x_0, y_0, fontSize, screen, time = 30, color = black):
     screen.blit(display, displayRect)
     pygame.display.flip()
     
-def CL_game(x_0, y_0, x, y, tx_0, ty_0, tFontSize, screen, c1 = white, c2 = black):
-    drawBoard(x_0, y_0, x, y, screen, c1, c2)
+def CL_game(x_0, y_0, x, y, tx_0, ty_0, tFontSize, screen, c1 = white, c2 = black, highlight = None, hlColor = red):
+    drawBoard(x_0, y_0, x, y, screen, c1, c2, highlight, hlColor)
     lines = ['8', '7', '6', '5', '4', '3', '2', '1']
     collumns = ['a', 'b', 'c', 'd', 'e','f', 'g', 'h']
     running = True
@@ -84,7 +89,7 @@ def main():
     pygame.init()
 
     #criando a tela
-    screenWidth, screenHeight = 800, 800
+    screenWidth, screenHeight = 1000, 800
     screen = pygame.display.set_mode((screenWidth, screenHeight))
     pygame.display.set_caption("ChessLab")
 
@@ -93,12 +98,13 @@ def main():
     #tamanho do tabuleiro
     x, y = 720, 720
     #posição inicial para deixar o tabuleiro centralizado
-    x_0 = (screenWidth - x)//2
+    #x_0 = (screenWidth - x)//2
+    x_0 = 40
     y_0 = (screenHeight - y)//2
 
 
     screen.fill(background1)
-    CL_game(x_0, y_0, x, y, x_0, 10, 40, screen, wbwhite, wbblack)
+    CL_game(x_0, y_0, x, y, 800, 100, 150, screen, bbwhite, bbblack, None, green)
 
     # Encerra o pygame
     pygame.quit()
