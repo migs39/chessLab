@@ -4,15 +4,20 @@ import sys
 black = (0, 0, 0)
 white = (255, 255, 255)
 background1 = (180, 180, 180)
+background2 = (48, 46, 43)
+background3 = (60, 87, 60)
 #tabuleiro azul
 bbwhite = (153, 217, 234)
 bbblack = (63, 72, 204)
-#tabuleiro de madeira
+#tabuleiro de madeira1
 wbwhite = (185, 122, 87)
 wbblack = (136, 0, 21)
+#tabuleiro de madeira2
+wbwhite2 = (255, 206, 158)
+wbblack2 = (209, 139, 71)
 #tabuleiro esverdeado
 gbwhite = (239, 228,176)
-gbblcak = (34, 177, 76)
+gbblack = (34, 177, 76)
 
 green = (0, 255, 0)
 red = (255, 0, 0)
@@ -55,21 +60,32 @@ def drawBoard(x_0, y_0, x, y, screen, c1 = white, c2 = black, highlight = None, 
                 color = c1
     pygame.display.flip()
 
-def showTimer(x_0, y_0, fontSize, screen, time = 30, color = black):
+def write(x_0, y_0, fontSize, screen, text, color = black):
     font = pygame.font.Font(None, fontSize)
-    display = font.render(str(time), True, color)
+    display = font.render(text, True, color)
     displayRect = display.get_rect()
     displayRect.topleft = (x_0, y_0)
     screen.blit(display, displayRect)
     pygame.display.flip()
-    
-def CL_game(x_0, y_0, x, y, tx_0, ty_0, tFontSize, screen, c1 = white, c2 = black, highlight = None, hlColor = red):
+
+def showMoves(sq1, x1, y1, f1, sq2, x2, y2, f2, sq3, x3, y3, f3, screen, color = black):
+    write(x1, y1, f1, screen, sq1, color)
+    write(x2, y2, f2, screen, sq2, color)
+    write(x3, y3, f3, screen, sq3, color)
+
+def showTimer(x_0, y_0, fontSize, screen, time = 30, color = black):
+    write(x_0, y_0, fontSize, screen, str(time), color)     
+
+
+def CL_game(x_0, y_0, x, y, tx_0, ty_0, tFontSize, screen, fsq1, fsq2, fsq3, sq1x, sq1y, sq2x, sq2y, sq3x, sq3y,
+            c1 = white, c2 = black, cDf = black, highlight = None, hlColor = red, time = 30.0, sq1 = "", sq2 = "", sq3 = ""):
     drawBoard(x_0, y_0, x, y, screen, c1, c2, highlight, hlColor)
     lines = ['8', '7', '6', '5', '4', '3', '2', '1']
     collumns = ['a', 'b', 'c', 'd', 'e','f', 'g', 'h']
     running = True
     while running:
-        showTimer(tx_0, ty_0, tFontSize, screen)
+        showTimer(tx_0, ty_0, tFontSize, screen, time, cDf)
+        showMoves(sq1, sq1x, sq1y, fsq1, sq2, sq2x, sq2y, fsq2, sq3, sq3x, sq3y, fsq3, screen, cDf) 
             #eventos
         for event in pygame.event.get():
              if event.type == pygame.QUIT:
@@ -103,8 +119,9 @@ def main():
     y_0 = (screenHeight - y)//2
 
 
-    screen.fill(background1)
-    CL_game(x_0, y_0, x, y, 800, 100, 150, screen, bbwhite, bbblack, None, green)
+    screen.fill(background2)
+    CL_game(x_0, y_0, x, y, 775, 300, 120, screen, 100, 70, 50, 780, 450, 870, 465, 935, 475, wbwhite2, wbblack2, white, None, green,
+            22.42, 'a5', 'b6', 'e4')
 
     # Encerra o pygame
     pygame.quit()
