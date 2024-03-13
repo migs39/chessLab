@@ -1,6 +1,7 @@
 import pygame
 import sys
 
+red = (255, 0, 0)
 black = (0, 0, 0)
 white = (255, 255, 255)
 background1 = (180, 180, 180)
