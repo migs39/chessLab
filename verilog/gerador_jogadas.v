@@ -2,37 +2,22 @@ module gerador_jogadas(
   input        clock,
   input        reset,
   input        novaJogada,
-  output reg [3:0] coluna,
-  output reg [3:0] linha
+  output reg [2:0] coluna,
+  output reg [2:0] linha
 );
 
-  reg [3:0] auxLinha;
-  reg [3:0] auxColuna;
+  wire [5:0] auxQ;
 
+  contador_m #(.M(63), .N(6)) contador_geradorJogadas (
+      .clock  ( clock ),
+      .zera_s ( reset ),
+      .conta  ( 1'b1 ),
+      .Q      ( auxQ )
+  ); 
 
-  always @(posedge clock or posedge reset or posedge novaJogada) begin
-    if(reset) begin
-      auxLinha <= 4'b0001;
-      auxColuna <= 4'b0001;
-    end
-    if (clock) begin
-      if (auxLinha == 4'b1000) begin
-        if (auxColuna == 4'b1000) begin
-          auxColuna <= 4'b0001;
-        end else begin
-          auxColuna <= auxColuna + 4'b0001;
-        end
-        auxLinha <= 4'b0001;
-      end else begin  
-        auxLinha <= auxLinha + 4'b0001;
-      end
-    end
-    if (novaJogada) begin
-        coluna <= 4'b0001; 
-        // coluna <= auxColuna;
-        linha <= 4'b0001;
-        // linha <= auxLinha;
-    end 
+  always @(posedge novaJogada) begin
+    coluna <= auxQ / 8;
+    linha <= auxQ % 8;
   end
 
 endmodule

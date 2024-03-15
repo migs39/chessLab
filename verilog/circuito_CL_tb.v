@@ -8,8 +8,8 @@ module circuito_CL_tb;
     reg        clock_in   = 1;
     reg        reset_in   = 0;
     reg        iniciar_in = 0;
-    reg  [3:0] colunas_in  = 4'b0000;
-    reg  [3:0] linhas_in  = 4'b0000;
+    reg  [2:0] colunas_in  = 3'b000;
+    reg  [2:0] linhas_in  = 3'b000;
     reg        temJogada_in  = 0;
     reg        terminar_in  = 0;
 
@@ -22,8 +22,6 @@ module circuito_CL_tb;
     wire [6:0] db_linhaEsperada_out    ;
     wire [6:0] db_estado_out     ;
     wire [6:0] db_colunaEsperada_out;
-    wire [3:0] coluna_tb ;
-    wire [3:0] linha_tb ;
 
     // Configuração do clock
     parameter clockPeriod = 20; // in ns, f=50MHz
@@ -49,9 +47,7 @@ module circuito_CL_tb;
       .db_acertou (acertou_out) ,
       .linhaEsperada (db_linhaEsperada_out) ,
       .colunaEsperada (db_colunaEsperada_out) ,
-      .db_estado (db_estado_out) ,
-      .db_coluna_tb (coluna_tb) ,
-      .db_linha_tb (linha_tb)
+      .db_estado (db_estado_out) 
     );
 
     // geracao dos sinais de entrada (estimulos)
@@ -92,8 +88,8 @@ module circuito_CL_tb;
       // Teste 3. jogar + contar 1 ponto
       caso = 3;
       @(negedge clock_in);
-      colunas_in  = 4'b0010;
-      linhas_in = 4'b0010;
+      colunas_in = 3'b001;
+      linhas_in = 3'b000;
       #(10*clockPeriod);
       temJogada_in = 1'b1;
       #(2*clockPeriod);
@@ -104,8 +100,8 @@ module circuito_CL_tb;
       // Teste 4. errar + esperar timeOut
       caso = 4;
       @(negedge clock_in);
-      colunas_in = 4'b0010;
-      linhas_in = 4'b0010;
+      colunas_in = 3'b000;
+      linhas_in = 3'b001;
       #(10*clockPeriod);
       temJogada_in = 1'b1;
       #(2*clockPeriod);
@@ -119,7 +115,7 @@ module circuito_CL_tb;
       terminar_in = 1'b1;
       #(10*clockPeriod);
       terminar_in = 1'b0;
-      // esperar
+      // espera
       #(10*clockPeriod);
 
 
