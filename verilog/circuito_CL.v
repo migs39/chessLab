@@ -1,8 +1,8 @@
 module circuito_CL (
  input clock,
  input iniciar,
- input [3:0] jogadaFileira,
- input [3:0] jogadaColuna,
+ input [2:0] jogadaFileira,
+ input [2:0] jogadaColuna,
  input temJogada,
  input terminar,
  input reset,
@@ -12,9 +12,7 @@ module circuito_CL (
  output db_acertou,
  output [6:0] linhaEsperada,
  output [6:0] colunaEsperada,
- output [6:0] db_estado,
- output [3:0] db_coluna_tb,
- output [3:0] db_linha_tb
+ output [6:0] db_estado
 );
 
     wire fimTWire;
@@ -29,12 +27,14 @@ module circuito_CL (
     wire acertouWire;
     wire temJogadaWire;
     wire novaJogadaWire;
+    wire salvaInicialWire;
+    wire salvaNovaWire;
 
     wire [7:0]pontosWire;
-    wire [3:0]linhaEsperadaWire;
-    wire [3:0]colunaEsperadaWire;
-    wire [3:0]db_linhaWire;
-    wire [3:0]db_colunaWire;
+    wire [2:0]linhaEsperadaWire;
+    wire [2:0]colunaEsperadaWire;
+    wire [2:0]db_linhaWire;
+    wire [2:0]db_colunaWire;
     wire [3:0]db_estadoWire;
  
 
@@ -53,6 +53,8 @@ module circuito_CL (
         .contaT             ( contaTWire ),
         .decresceT          ( decresceTWire ),
         .jogou              ( temJogada ),
+        .salvaInicial       ( salvaInicialWire ),
+        .salvaNova          ( salvaNovaWire ),
         //saida
         .fimT               ( fimTWire ),
         .acertou            ( acertouWire ),
@@ -83,6 +85,8 @@ module circuito_CL (
         .contaT       ( contaTWire ),
         .decresceT    ( decresceTWire ),
         .db_estado    ( db_estadoWire ),
+        .salvaInicial ( salvaInicialWire ),
+        .salvaNova    ( salvaNovaWire ),
         .geraNova     ( novaJogadaWire )
     );
 
@@ -113,7 +117,4 @@ module circuito_CL (
 
     assign db_acertou = acertouWire; 
     assign errou = decresceTWire; 
-    //variaveis para testbench
-    assign db_coluna_tb = colunaEsperadaWire;
-    assign db_linha_tb = linhaEsperadaWire;
 endmodule
