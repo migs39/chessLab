@@ -55,14 +55,14 @@ def mainMenu(screen, xcTitle, yTitle, fTitle, xcBoard, ycBoard, lenghtBoard, xcP
         playButton = write_topmid(xcPlay, yPlay, fPlay, screen, 'Jogar', dfColor, xInf, yInf)
         buttons.append(playButton)
 
-        RecordsButton = write_topmid(xcRecords, yRecords, fRecords, screen, 'Melhores Pontuações', dfColor, xInf, yInf)
-        buttons.append(RecordsButton)
+        recordsButton = write_topmid(xcRecords, yRecords, fRecords, screen, 'Melhores Pontuações', dfColor, xInf, yInf)
+        buttons.append(recordsButton)
 
-        CreditsButton = write_topmid(xcCredits, yCredits, fCredits, screen, 'Créditos', dfColor, xInf, yInf)
-        buttons.append(CreditsButton)
+        creditsButton = write_topmid(xcCredits, yCredits, fCredits, screen, 'Créditos', dfColor, xInf, yInf)
+        buttons.append(creditsButton)
 
-        QuitButton = write_topmid(xcQuit, yQuit, fQuit, screen, 'Sair', dfColor, xInf, yInf)
-        buttons.append(QuitButton)
+        quitButton = write_topmid(xcQuit, yQuit, fQuit, screen, 'Sair', dfColor, xInf, yInf)
+        buttons.append(quitButton)
 
 
 
@@ -79,20 +79,22 @@ def mainMenu(screen, xcTitle, yTitle, fTitle, xcBoard, ycBoard, lenghtBoard, xcP
                                 screen.fill(bgColor)
                                 configMenu(screen, bgColor, 96, 96, 64, 96, 336, 64, 240, 240, 408, 240, 576, 240, 56,
                                            16, 8, 240, 472, 408, 472, 576, 472, 56, 16, 8, 800, 680, 72, 16, 8)
+                            if button == quitButton:
+                                running = False
                                 
         pygame.display.flip()
     sys.exit()
 
 def configMenu(screen, bgColor, tTitlex, tTitley, tTitlef, dTitlex, dTitley, dTitlef, t1x_c, t1y, t2x_c, t2y, t3x_c, t3y, tf,
                 tinfx, tinfy, d1x_c, d1y, d2x_c, d2y, d3x_c, d3y, df, dinfx, dinfy, startx_c, starty, startf, startInfx,
-                startInfy, t1 = '15', t2 = '30', t3 = '45', T = '30', d1 = '0', d2 = '1', d3 = '2', D = '1',
+                startInfy, t1 = '15 s', t2 = '30 s', t3 = '45 s', T = '30 s', d1 = '0 s', d2 = '1 s', d3 = '2 s', D = '1 s',
                 dfColor = white, spColor = aqua):
     
     if not T in [t1, t2, t3]:
         raise TypeError('Tempo selecionado não disponível')
     if not D in [d1, d2, d3]:
         raise TypeError('Decremento selecionado não disponível')
-    
+    screen.fill(bgColor)
     running = True
     while running:
         #escrevendo os titulos
