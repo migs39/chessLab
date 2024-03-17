@@ -68,6 +68,14 @@ def write(x_0, y_0, fontSize, screen, text, color = black):
     screen.blit(display, displayRect)
     pygame.display.flip()
 
+def write_topmid(x_c, y_0, fontSize, screen, text, color = black):
+    font = pygame.font.Font(None, fontSize)
+    display = font.render(text, True, color)
+    displayRect = display.get_rect()
+    displayRect.midtop(x_c, y_0)
+    screen.blit(display, displayRect)
+    pygame.display.flip()
+
 def showMoves(sq1, x1, y1, f1, sq2, x2, y2, f2, sq3, x3, y3, f3, screen, color = black):
     write(x1, y1, f1, screen, sq1, color)
     write(x2, y2, f2, screen, sq2, color)
