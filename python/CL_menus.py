@@ -210,7 +210,7 @@ def main():
     
     pygame.init()
 
-    #criando a tela a
+    #criando a tela
     screenWidth, screenHeight = 1000, 800
     screen = pygame.display.set_mode((screenWidth, screenHeight))
     pygame.display.set_caption("ChessLab")
