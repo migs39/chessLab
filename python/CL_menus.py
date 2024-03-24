@@ -1,71 +1,42 @@
 import pygame
 import sys
-import CL_game as game
+import CL_utils as utils
+import CL_colors as clr
 
-black = (0, 0, 0)
-white = (255, 255, 255)
-background1 = (180, 180, 180)
-background2 = (48, 46, 43)
-background3 = (60, 87, 60)
-#tabuleiro azul
-bbwhite = (153, 217, 234)
-bbblack = (63, 72, 204)
-#tabuleiro de madeira1
-wbwhite = (185, 122, 87)
-wbblack = (136, 0, 21)
-#tabuleiro de madeira2
-wbwhite2 = (255, 206, 158)
-wbblack2 = (209, 139, 71)
-#tabuleiro esverdeado
-gbwhite = (239, 228,176)
-gbblack = (34, 177, 76)
 
-green = (0, 255, 0)
-red = (255, 0, 0)
-aqua = (0, 255, 255) 
 
-def write_topmid(x_c, y_0, fontSize, screen, text, color = black, inflationx = 0, inflationy = 0):
-    font = pygame.font.Font(None, fontSize)
-    display = font.render(text, True, color)
-    displayRect = display.get_rect()
-    displayRect.midtop = (x_c, y_0)
-    screen.blit(display, displayRect)
-    finalRect = displayRect.inflate(inflationx, inflationy)
-    finalRect.center = displayRect.center
-    pygame.display.flip()
-    return(finalRect)
+
 
 
 
 def mainMenu(screen, xcTitle, yTitle, fTitle, xcBoard, ycBoard, lenghtBoard, xcPlay,
              yPlay, fPlay, xcRecords, yRecords, fRecords, xcCredits, yCredits,
-             fCredits, xcQuit, yQuit, fQuit, xInf, yInf, dfColor, c1, c2, bgColor):
-    screen.fill(bgColor)
+             fCredits, xcQuit, yQuit, fQuit, xInf, yInf, dfColor, bgColor):
     running = True
     while running:
-        #escreve o Titulo
-        write_topmid(xcTitle, yTitle, fTitle, screen, 'Chess Lab', dfColor)
-        #desenha o tabuleiro
+        # Escreve o Título
+        utils.write_topmid(xcTitle, yTitle, fTitle, screen, 'Chess Lab', dfColor)
+        # Desenha o tabuleiro
         xBoard = xcBoard - lenghtBoard/2
         yBoard = ycBoard - lenghtBoard/2
-        game.drawBoard(xBoard, yBoard, lenghtBoard, lenghtBoard, screen, c1, c2, None)
+        utils.drawBoard(xBoard, yBoard, lenghtBoard, lenghtBoard, screen, clr.bwhite, clr.bblack, None)
 
-        #cria os botões
+        # Cria os botões
         buttons = []
-        playButton = write_topmid(xcPlay, yPlay, fPlay, screen, 'Jogar', dfColor, xInf, yInf)
+        playButton = utils.write_topmid(xcPlay, yPlay, fPlay, screen, 'Jogar', dfColor, xInf, yInf)
         buttons.append(playButton)
 
-        recordsButton = write_topmid(xcRecords, yRecords, fRecords, screen, 'Melhores Pontuações', dfColor, xInf, yInf)
+        recordsButton = utils.write_topmid(xcRecords, yRecords, fRecords, screen, 'Melhores Pontuações', dfColor, xInf, yInf)
         buttons.append(recordsButton)
 
-        creditsButton = write_topmid(xcCredits, yCredits, fCredits, screen, 'Créditos', dfColor, xInf, yInf)
+        creditsButton = utils.write_topmid(xcCredits, yCredits, fCredits, screen, 'Créditos', dfColor, xInf, yInf)
         buttons.append(creditsButton)
 
-        quitButton = write_topmid(xcQuit, yQuit, fQuit, screen, 'Sair', dfColor, xInf, yInf)
+        quitButton = utils.write_topmid(xcQuit, yQuit, fQuit, screen, 'Sair', dfColor, xInf, yInf)
         buttons.append(quitButton)
 
-
-
+        boardButton = pygame.Rect(xBoard, yBoard, lenghtBoard, lenghtBoard)
+        buttons.append(boardButton)
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -77,53 +48,59 @@ def mainMenu(screen, xcTitle, yTitle, fTitle, xcBoard, ycBoard, lenghtBoard, xcP
                         if (button.left < mx < button.right) and (button.top < my < button.bottom):
                             if button == playButton:
                                 screen.fill(bgColor)
-                                configMenu(screen, bgColor, 96, 96, 64, 96, 336, 64, 240, 240, 408, 240, 576, 240, 56,
+                                return configMenu(screen, bgColor, 96, 96, 64, 96, 336, 64, 240, 240, 408, 240, 576, 240, 56,
                                            16, 8, 240, 472, 408, 472, 576, 472, 56, 16, 8, 800, 680, 72, 16, 8)
+                            if button == boardButton:
+                                clr.switchcolor()
+                                return mainMenu(screen, xcTitle, yTitle, fTitle, xcBoard, ycBoard, lenghtBoard, xcPlay,
+                                                yPlay, fPlay, xcRecords, yRecords, fRecords, xcCredits, yCredits,
+                                                fCredits, xcQuit, yQuit, fQuit, xInf, yInf, dfColor, bgColor)
                             if button == quitButton:
                                 running = False
                                 
         pygame.display.flip()
     sys.exit()
 
+
 def configMenu(screen, bgColor, tTitlex, tTitley, tTitlef, dTitlex, dTitley, dTitlef, t1x_c, t1y, t2x_c, t2y, t3x_c, t3y, tf,
                 tinfx, tinfy, d1x_c, d1y, d2x_c, d2y, d3x_c, d3y, df, dinfx, dinfy, startx_c, starty, startf, startInfx,
                 startInfy, t1 = '15 s', t2 = '30 s', t3 = '45 s', T = '30 s', d1 = '0 s', d2 = '1 s', d3 = '2 s', D = '1 s',
-                dfColor = white, spColor = aqua):
+                dfColor = clr.white, spColor = clr.aqua):
     
     if not T in [t1, t2, t3]:
         raise TypeError('Tempo selecionado não disponível')
     if not D in [d1, d2, d3]:
         raise TypeError('Decremento selecionado não disponível')
-    screen.fill(bgColor)
+    #screen.fill(bgColor)
     running = True
     while running:
         #escrevendo os titulos
-        game.write(tTitlex, tTitley, tTitlef, screen, "Selecione o tempo:", dfColor)
-        game.write(dTitlex, dTitley, dTitlef, screen, "Selecione o decremento:", dfColor)
+        utils.write_topleft(tTitlex, tTitley, tTitlef, screen, "Selecione o tempo:", dfColor)
+        utils.write_topleft(dTitlex, dTitley, dTitlef, screen, "Selecione o decremento:", dfColor)
 
 
         #Escrevendo os botoes
         Buttons = []
-
+        
         if T == t1:
             color = spColor
         else:
             color = dfColor
-        t1Button = write_topmid(t1x_c,t1y, tf, screen, t1, color, tinfx, tinfy)
+        t1Button = utils.write_topmid(t1x_c,t1y, tf, screen, t1, color, tinfx, tinfy)
         Buttons.append(t1Button)
 
         if T == t2:
             color = spColor
         else:
             color = dfColor
-        t2Button = write_topmid(t2x_c,t2y, tf, screen, t2, color, tinfx, tinfy)
+        t2Button = utils.write_topmid(t2x_c,t2y, tf, screen, t2, color, tinfx, tinfy)
         Buttons.append(t2Button)
 
         if T == t3:
             color = spColor
         else:
             color = dfColor
-        t3Button = write_topmid(t3x_c,t3y, tf, screen, t3, color, tinfx, tinfy)
+        t3Button = utils.write_topmid(t3x_c,t3y, tf, screen, t3, color, tinfx, tinfy)
         Buttons.append(t3Button)
 
 
@@ -131,25 +108,25 @@ def configMenu(screen, bgColor, tTitlex, tTitley, tTitlef, dTitlex, dTitley, dTi
             color = spColor
         else:
             color = dfColor
-        d1Button = write_topmid(d1x_c, d1y, df, screen, d1, color, dinfx, dinfy)
+        d1Button = utils.write_topmid(d1x_c, d1y, df, screen, d1, color, dinfx, dinfy)
         Buttons.append(d1Button)
         
         if D == d2:
             color = spColor
         else:
             color = dfColor
-        d2Button = write_topmid(d2x_c, d2y, df, screen, d2, color, dinfx, dinfy)
+        d2Button = utils.write_topmid(d2x_c, d2y, df, screen, d2, color, dinfx, dinfy)
         Buttons.append(d2Button)
 
         if D == d3:
             color = spColor
         else:
             color = dfColor
-        d3Button = write_topmid(d3x_c, d3y, df, screen, d3, color, dinfx, dinfy)
+        d3Button = utils.write_topmid(d3x_c, d3y, df, screen, d3, color, dinfx, dinfy)
         Buttons.append(d3Button)
 
         
-        startButton = write_topmid(startx_c, starty, startf, screen, 'Começar', dfColor, startInfx, startInfy)
+        startButton = utils.write_topmid(startx_c, starty, startf, screen, 'Começar', dfColor, startInfx, startInfy)
         Buttons.append(startButton)
 
         #conferindo eventos
@@ -163,7 +140,7 @@ def configMenu(screen, bgColor, tTitlex, tTitley, tTitlef, dTitlex, dTitley, dTi
                     for button in Buttons:
                         if (button.left < mx < button.right) and (button.top < my < button.bottom):
                             if button == startButton:
-                                print('Play')
+                                return int(T[:2]), int(D[:2])
                             if button == t1Button:
                                 return configMenu(screen, bgColor, tTitlex, tTitley, tTitlef, dTitlex, dTitley, dTitlef, t1x_c,
                                                 t1y, t2x_c, t2y, t3x_c, t3y, tf, tinfx, tinfy, d1x_c, d1y, d2x_c, d2y,
@@ -216,8 +193,9 @@ def main():
     pygame.display.set_caption("ChessLab")
     #configMenu(screen, 96, 96, 64, 96, 336, 64, 240, 240, 408, 240, 576, 240, 56,
     #               16, 8, 240, 472, 408, 472, 576, 472, 56, 16, 8, 800, 680, 72, 16, 8)
-    mainMenu(screen, 500, 80, 240, 256, 520, 344, 720, 384, 64, 720, 464, 64, 720, 544,
-             64, 720, 624, 64, 16, 8, white, bbwhite, bbblack, background2)
+    screen.fill(clr.background2)
+    print(mainMenu(screen, 500, 80, 240, 256, 520, 344, 720, 384, 64, 720, 464, 64, 720, 544,
+             64, 720, 624, 64, 16, 8, clr.white, clr.background2))
 
 if __name__ == '__main__':
     main()
