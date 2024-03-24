@@ -1,5 +1,4 @@
 import pygame
-import sys
 import CL_game as game
 import CL_menus as menus
 import CL_colors as clr
