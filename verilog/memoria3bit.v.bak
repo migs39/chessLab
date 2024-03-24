@@ -3,18 +3,18 @@ module memoria3bit(
   input        reset,
 
   //iputs do gerador inicial
-  input       [2:0] novaJogadaInit,
-  input       [2:0] colunaGerada1,
-  input       [2:0] linhaGerada1,
-  input       [2:0] colunaGerada2,
-  input       [2:0] linhaGerada2,
-  input       [2:0] colunaGerada3,
-  input       [2:0] linhaGerada3,
+  input        novaJogadaInit,
+  input        colunaGerada1,
+  input        linhaGerada1,
+  input        colunaGerada2,
+  input        linhaGerada2,
+  input        colunaGerada3,
+  input        linhaGerada3,
   
   //iputs do gerador padrao
-  input       [2:0] novaJogada,
-  input       [2:0] colunaGerada,
-  input       [2:0] linhaGerada,
+  input        novaJogada,
+  input        colunaGerada,
+  input        linhaGerada,
 
   output reg [2:0] coluna1,
   output reg [2:0] linha1,
