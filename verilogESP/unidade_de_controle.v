@@ -72,7 +72,7 @@ module unidade_controle (
             geraJogada:      Eprox = salvaJogada;
             salvaJogada:     Eprox = fimJogada;
             fimJogada:       Eprox = espera;
-            fim:             Eprox = terminar ? inicial : fim;
+            fim:             Eprox = inicial;
             default:         Eprox = resetGen;
         endcase
     end

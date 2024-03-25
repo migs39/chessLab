@@ -1,8 +1,7 @@
 module circuito_CL (
  input clock,
- input iniciar,
- input terminar,
- input reset,
+// input terminar,
+// input reset,
  output [6:0] pontos1,
  output [6:0] pontos2,
  output db_acertou,
@@ -12,7 +11,7 @@ module circuito_CL (
  //inputs esp
  input [2:0] jogadaFileira,
  input [2:0] jogadaColuna,
- input temJogada,
+ input iniciar,
  input fimT,
  //outputs esp
  output [2:0] colunaGerada,
@@ -20,7 +19,7 @@ module circuito_CL (
  output salvaNova,
  output decresceT
 );
-
+	 reg reset = 1'b0;
     wire registraRWire;
 
     wire zeraRWire;
@@ -55,7 +54,7 @@ module circuito_CL (
         .registraR          ( registraRWire ),
         .zeraR              ( zeraRWire ),
         .zeraG              ( zeraGWire ),
-        .jogou              ( temJogada ),
+        .jogou              ( iniciar ),
 
         .numJogada          (numJogada),
 
@@ -83,7 +82,7 @@ module circuito_CL (
         .fimT         ( fimT ),
         .acertou      ( acertouWire ),
         .temJogada    ( temJogadaWire ),
-        .terminar     ( terminar ),
+        //.terminar     ( terminar ),
 
         //saida
         .registraR    ( registraRWire ),
