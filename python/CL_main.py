@@ -29,7 +29,7 @@ def main():
         Squares.append(mqtt.sqrIn())
 
     game.CL_game(x_0, y_0, x, y, 775, 300, 120, 0, 0, 100, screen, 100, 70, 50, 784, 464, 872, 464, 936, 464, clr.bwhite, 
-            clr.bblack, clr.white, None, clr.green, T, Squares[0], Squares[1], Squares[2], 0, D)    
+            clr.bblack, clr.white, None, clr.green, T, Squares[0], Squares[1], Squares[2], clr.background2, 0, D)    
 
 if __name__ == '__main__':
     main()

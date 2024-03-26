@@ -26,6 +26,7 @@ def CL_game(x_0, y_0, x, y, tx_0, ty_0, tFontSize, px_0, py_0, pFontSize, screen
         screen.fill(bgColor, timerRect)
         timerRect = showTimer(tx_0, ty_0, tFontSize, screen, timeRemaining, cDf)
         showMoves(sq1, sq1x, sq1y, fsq1, sq2, sq2x, sq2y, fsq2, sq3, sq3x, sq3y, fsq3, screen, cDf)
+        utils.write_topleft(px_0, py_0, pFontSize, screen, str(points), cDf)
         # Desenhar o tabuleiro por último
         utils.drawBoard(x_0, y_0, x, y, screen, c1, c2, highlight, hlColor)
         timeRemaining -= 1 / 60
@@ -74,8 +75,8 @@ def test():
     y_0 = (screenHeight - y) // 2
 
     screen.fill(clr.background2)
-    CL_game(x_0, y_0, x, y, 775, 300, 120, screen, 100, 70, 50, 784, 464, 872, 464, 936, 464, clr.bwhite,
-            clr.bblack, clr.white, None, clr.green, 30.0, 'a5', 'b6', 'e4')
+    CL_game(x_0, y_0, x, y, 775, 300, 120, 864, 200, 100, screen, 100, 70, 50, 784, 464, 872, 464, 936, 464, clr.bwhite, 
+            clr.bblack, clr.white, None, clr.green, 30, 'a1', 'b2', 'e4', clr.background2, 0, 1)   
     # Encerra o pygame
     pygame.quit()
     sys.exit()
