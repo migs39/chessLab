@@ -1,7 +1,7 @@
 import paho.mqtt.publish as publish
 import paho.mqtt.subscribe as subscribe
 
-hostname = 'broker.emqx.io'
+hostname = 'Souza 2.4ghz'
 topic = 'esp8266/test'
 
 def msgOut(content):
