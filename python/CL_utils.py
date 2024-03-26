@@ -24,9 +24,21 @@ def write_topleft(x_0, y_0, fontSize, screen, text, color = clrs.white, inflatio
     pygame.display.flip()
     return(finalRect)
 
+def write_midleft(x_0, y_c, fontSize, screen, text, color = clrs.white, inflationx = 0, inflationy = 0):
+    font = pygame.font.Font(None, fontSize)
+    display = font.render(text, True, color)
+    displayRect = display.get_rect()
+    displayRect.midleft = (x_0, y_c)
+    screen.blit(display, displayRect)
+    finalRect = displayRect.inflate(inflationx, inflationy)
+    finalRect.center = displayRect.center
+    pygame.display.flip()
+    return(finalRect)
+
+#------------------------------------------------------------------------------------
 
 #Criação do tabuleiro
-def makeSqr(x_0, y_0, x, y, screen, color, name):
+def makeSqr(x_0, y_0, x, y, screen, color):
     #cria a casa
     sqr = pygame.Rect(x_0, y_0, x, y)
     #desenha a casa
@@ -52,9 +64,9 @@ def drawBoard(x_0, y_0, x, y, screen, c1 = clrs.white, c2 = clrs.black, highligh
             sqrY_0 = y_0 + line*sqrY
             name = collumns[collumn]+lines[line]
             if name == highlight:
-                makeSqr(sqrX_0, sqrY_0, sqrX, sqrY, screen, hlColor, name)
+                makeSqr(sqrX_0, sqrY_0, sqrX, sqrY, screen, hlColor)
             else:
-                makeSqr(sqrX_0, sqrY_0, sqrX, sqrY, screen, color, name)
+                makeSqr(sqrX_0, sqrY_0, sqrX, sqrY, screen, color)
             if color == c1:
                 color = c2
             elif color == c2:

@@ -4,9 +4,9 @@ import CL_utils as utils
 import CL_colors as clr
 
 def showMoves(sq1, x1, y1, f1, sq2, x2, y2, f2, sq3, x3, y3, f3, screen, color=clr.black):
-    utils.write_topleft(x1, y1, f1, screen, sq1, color)
-    utils.write_topleft(x2, y2, f2, screen, sq2, color)
-    utils.write_topleft(x3, y3, f3, screen, sq3, color)
+    utils.write_midleft(x1, y1, f1, screen, sq1, color)
+    utils.write_midleft(x2, y2, f2, screen, sq2, color)
+    utils.write_midleft(x3, y3, f3, screen, sq3, color)
 
 def showTimer(x_0, y_0, fontSize, screen, time=30, color=clr.black):
     return utils.write_topleft(x_0, y_0, fontSize, screen, "{:.1f}".format(time), color)
@@ -28,6 +28,8 @@ def CL_game(x_0, y_0, x, y, tx_0, ty_0, tFontSize, screen, fsq1, fsq2, fsq3, sq1
         # Desenhar o tabuleiro por último
         utils.drawBoard(x_0, y_0, x, y, screen, c1, c2, highlight, hlColor)
         timeRemaining -= 1 / 60
+        if timeRemaining<=0:
+            return('end')
         clock.tick(60)
         # Eventos
         for event in pygame.event.get():
@@ -39,6 +41,7 @@ def CL_game(x_0, y_0, x, y, tx_0, ty_0, tFontSize, screen, fsq1, fsq2, fsq3, sq1
                     if x_0 <= mx <= x_0 + x and y_0 <= my <= x_0 + y:  # Se o click foi no tabuleiro
                         name = collumns[int((mx - x_0) // (x / 8))] + lines[int((my - y_0) // (y / 8))]
                         print(name)
+                        
 
 
 def test():
@@ -58,7 +61,7 @@ def test():
     y_0 = (screenHeight - y) // 2
 
     screen.fill(clr.background2)
-    CL_game(x_0, y_0, x, y, 775, 300, 120, screen, 100, 70, 50, 780, 450, 870, 465, 935, 475, clr.bwhite,
+    CL_game(x_0, y_0, x, y, 775, 300, 120, screen, 100, 70, 50, 784, 464, 872, 464, 936, 464, clr.bwhite,
             clr.bblack, clr.white, None, clr.green, 30.0, 'a5', 'b6', 'e4')
     # Encerra o pygame
     pygame.quit()
