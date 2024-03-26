@@ -2,14 +2,14 @@
 #include <PubSubClient.h>
 
 // WiFi
-const char *ssid = "Souza 2.4ghz"; // Enter your WiFi name
-const char *password = "elicris10";  // Enter WiFi password
+const char *ssid = "iPhonePapoti"; // Enter your WiFi name
+const char *password = "31213121";  // Enter WiFi password
 
 // MQTT Broker
 const char *mqtt_broker = "Souza 2.4ghz";
 const char *topic = "esp8266/test";
-const char *mqtt_username = "";
-const char *mqtt_password = "";
+const char *mqtt_username = "iPhonePapoti";
+const char *mqtt_password = "31213121";
 const int mqtt_port = 1883;
 
 // variaveis
@@ -46,8 +46,8 @@ WiFiClient espClient;
 PubSubClient client(espClient);
 
 void setup(void) {
-  // Set software serial baud to 115200;
-  Serial.begin(115200);
+  // Set software serial baud to 9600;
+  Serial.begin(9600);
   // connecting to a WiFi network
   WiFi.begin(ssid, password);
   while (WiFi.status() != WL_CONNECTED) {
@@ -151,7 +151,7 @@ void callback(char *topic, byte *payload, unsigned int length) {
           digitalWrite(jogadaFileira1, HIGH);
           digitalWrite(jogadaFileira2, HIGH);
         }
-      } else if (i == 2) {
+      } else if (i == 1) {
         valuecbyte = valuecbyte - 1;
         if (valuecbyte == 0) {
           digitalWrite(jogadaColuna0, LOW);
@@ -186,8 +186,7 @@ void callback(char *topic, byte *payload, unsigned int length) {
           digitalWrite(jogadaColuna1, HIGH);
           digitalWrite(jogadaColuna2, HIGH);
         }
-      } else if (i == 1) {
-        valuecbyte = valuecbyte - 1;
+      } else if (i == 2) {
         if (valuecbyte == 1) {
           digitalWrite(inicar, HIGH);
           i = length;
@@ -203,6 +202,7 @@ void callback(char *topic, byte *payload, unsigned int length) {
 
 void loop() {
   if (mqttConnected) {
+    digitalWrite(inicar, LOW);
     test[1] = '\0'; // Null-terminate the string
     buttonState = digitalRead(subirJogada);
     if (buttonState == HIGH) {
