@@ -2,6 +2,7 @@ import pygame
 import sys
 import CL_utils as utils
 import CL_colors as clr
+import CL_mqtt as mqtt
 
 def showMoves(sq1, x1, y1, f1, sq2, x2, y2, f2, sq3, x3, y3, f3, screen, color=clr.black):
     utils.write_midleft(x1, y1, f1, screen, sq1, color)
@@ -11,9 +12,9 @@ def showMoves(sq1, x1, y1, f1, sq2, x2, y2, f2, sq3, x3, y3, f3, screen, color=c
 def showTimer(x_0, y_0, fontSize, screen, time=30, color=clr.black):
     return utils.write_topleft(x_0, y_0, fontSize, screen, "{:.1f}".format(time), color)
 
-def CL_game(x_0, y_0, x, y, tx_0, ty_0, tFontSize, screen, fsq1, fsq2, fsq3, sq1x, sq1y, sq2x, sq2y, sq3x, sq3y,
+def CL_game(x_0, y_0, x, y, tx_0, ty_0, tFontSize, px_0, py_0, pFontSize, screen, fsq1, fsq2, fsq3, sq1x, sq1y, sq2x, sq2y, sq3x, sq3y,
             c1=clr.white, c2=clr.black, cDf=clr.black, highlight=None, hlColor=clr.red, time=30.0, sq1="", sq2="", sq3="",
-            bgColor=clr.background2):
+            bgColor=clr.background2, points = 0, decrease = 1):
     utils.drawBoard(x_0, y_0, x, y, screen, c1, c2, highlight, hlColor)
     lines = ['8', '7', '6', '5', '4', '3', '2', '1']
     collumns = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h']
@@ -28,8 +29,9 @@ def CL_game(x_0, y_0, x, y, tx_0, ty_0, tFontSize, screen, fsq1, fsq2, fsq3, sq1
         # Desenhar o tabuleiro por último
         utils.drawBoard(x_0, y_0, x, y, screen, c1, c2, highlight, hlColor)
         timeRemaining -= 1 / 60
-        if timeRemaining<=0:
-            return('end')
+        if timeRemaining<=0: #Fim de jogo
+            mqtt.msgOut('END')
+            return(points)
         clock.tick(60)
         # Eventos
         for event in pygame.event.get():
@@ -40,7 +42,18 @@ def CL_game(x_0, y_0, x, y, tx_0, ty_0, tFontSize, screen, fsq1, fsq2, fsq3, sq1
                     mx, my = pygame.mouse.get_pos()
                     if x_0 <= mx <= x_0 + x and y_0 <= my <= x_0 + y:  # Se o click foi no tabuleiro
                         name = collumns[int((mx - x_0) // (x / 8))] + lines[int((my - y_0) // (y / 8))]
-                        print(name)
+                        mqtt.sqrOut(name)
+                        acertou = mqtt.msgIn() #Espera um bool acertou
+                        if acertou:
+                            sqNew = mqtt.sqrIn() #Espera 2 numeros de 1 a 8 representando o quadrado no final da memoria
+                            return CL_game(x_0, y_0, x, y, tx_0, ty_0, tFontSize, px_0, py_0, pFontSize, screen,
+                                            fsq1, fsq2, fsq3, sq1x, sq1y, sq2x, sq2y, sq3x, sq3y, c1, c2, cDf,
+                                            highlight, hlColor, timeRemaining, sq2, sq3, sqNew, bgColor, points+1)
+                        elif not acertou:
+                            return CL_game(x_0, y_0, x, y, tx_0, ty_0, tFontSize, px_0, py_0, pFontSize, screen,
+                                            fsq1, fsq2, fsq3, sq1x, sq1y, sq2x, sq2y, sq3x, sq3y, c1, c2, cDf,
+                                            highlight, hlColor, timeRemaining - decrease, sq2, sq3, sqNew, bgColor, points)
+
                         
 
 
