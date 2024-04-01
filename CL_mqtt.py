@@ -22,5 +22,5 @@ def sqrOut(sq):
     line = int(sq[1])
     collumns = 'abcdefgh'
     collumn = collumns.index(sq[0]) + 1
-    msgOut(collumn)
-    msgOut(line)
+    msg = str(coluumn) + str(line) + '1'
+    msgOut(msg)
