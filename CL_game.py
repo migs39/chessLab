@@ -31,7 +31,7 @@ def CL_game(x_0, y_0, x, y, tx_0, ty_0, tFontSize, px_0, py_0, pFontSize, screen
         utils.drawBoard(x_0, y_0, x, y, screen, c1, c2, highlight, hlColor)
         timeRemaining -= 1 / 60
         if timeRemaining<=0: #Fim de jogo
-            mqtt.msgOut('END')
+            mqtt.msgOut('112')
             return(points)
         clock.tick(60)
         # Eventos
