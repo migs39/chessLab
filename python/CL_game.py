@@ -141,8 +141,8 @@ def testR():
     y_0 = (screenHeight - y) // 2
 
     screen.fill(clr.background2)
-    CL_game_R_test(x_0, y_0, x, y, 775, 300, 120, 864, 200, 100, screen, 784, 464, 100)
+    print(CL_game_R_test(x_0, y_0, x, y, 775, 300, 120, 864, 200, 100, screen, 784, 464, 100))
 
 
 if __name__ == '__main__':
-    print(testR())
+    testR()
