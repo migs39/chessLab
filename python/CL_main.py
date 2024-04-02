@@ -1,8 +1,8 @@
 import pygame
 import CL_game as game
-import CL_menus as menus
-import CL_colors as clr
-import CL_mqtt as mqtt
+import python.CL_menus as menus
+import python.CL_colors as clr
+import python.CL_mqtt as mqtt
 
 def main():
     
@@ -22,11 +22,14 @@ def main():
     T, D = menus.mainMenu(screen, 500, 80, 240, 256, 520, 344, 720, 384, 64, 720, 464, 64, 720, 544,
              64, 720, 624, 64, 16, 8, clr.white, clr.background2)
     screen.fill(clr.background2)
+    mqtt.msgOut("001")
+    print("chegou aq ")
 
-    mqtt.msgOut("Start")
     Squares = []
     for i in range(3):
         Squares.append(mqtt.sqrIn())
+    print("chegou aq ")
+
 
     game.CL_game(x_0, y_0, x, y, 775, 300, 120, 0, 0, 100, screen, 100, 70, 50, 784, 464, 872, 464, 936, 464, clr.bwhite, 
             clr.bblack, clr.white, None, clr.green, T, Squares[0], Squares[1], Squares[2], clr.background2, 0, D)    

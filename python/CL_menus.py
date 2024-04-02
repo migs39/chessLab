@@ -1,7 +1,7 @@
 import pygame
 import sys
-import CL_utils as utils
-import CL_colors as clr
+import python.CL_utils as utils
+import python.CL_colors as clr
 
 
 

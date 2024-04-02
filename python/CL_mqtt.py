@@ -1,7 +1,7 @@
 import paho.mqtt.publish as publish
 import paho.mqtt.subscribe as subscribe
 
-hostname = 'Souza 2.4ghz'
+hostname = 'localhost'
 topic = 'esp8266/test'
 
 def msgOut(content):
@@ -22,5 +22,5 @@ def sqrOut(sq):
     line = int(sq[1])
     collumns = 'abcdefgh'
     collumn = collumns.index(sq[0]) + 1
-    msgOut(collumn)
-    msgOut(line)
+    msg = str(collumn) + str(line) + '1'
+    msgOut(msg)
