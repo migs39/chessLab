@@ -4,29 +4,29 @@ import CL_utils as utils
 import CL_colors as clr
 import CL_mqtt as mqtt
 
-def showMoves(sq1, x1, y1, f1, sq2, x2, y2, f2, sq3, x3, y3, f3, screen, color=clr.black):
-    utils.write_midleft(x1, y1, f1, screen, sq1, color)
-    utils.write_midleft(x2, y2, f2, screen, sq2, color)
-    utils.write_midleft(x3, y3, f3, screen, sq3, color)
+def showMoves(sq1, x1, y1, f1, sq2, x2, y2, f2, sq3, x3, y3, f3, screen, color=clr.black, bg = clr.background2):
+    utils.write_midleft(x1, y1, f1, screen, sq1, color, bg)
+    utils.write_midleft(x2, y2, f2, screen, sq2, color, bg)
+    utils.write_midleft(x3, y3, f3, screen, sq3, color, bg)
 
-def showTimer(x_0, y_0, fontSize, screen, time=30, color=clr.black):
-    return utils.write_topleft(x_0, y_0, fontSize, screen, "{:.1f}".format(time), color)
+def showTimer(x_0, y_0, fontSize, screen, time=30, color=clr.black, bg = clr.background2):
+    return utils.write_topleft(x_0, y_0, fontSize, screen, "{:.1f}".format(time), color, bg)
 
 def CL_game(x_0, y_0, x, y, tx_0, ty_0, tFontSize, px_0, py_0, pFontSize, screen, fsq1, fsq2, fsq3, sq1x, sq1y, sq2x, sq2y, sq3x, sq3y,
-            c1=clr.white, c2=clr.black, cDf=clr.black, highlight=None, hlColor=clr.red, time=30.0, sq1="", sq2="", sq3="",
+            c1=clr.bwhite, c2=clr.bblack, cDf=clr.black, highlight=None, hlColor=clr.red, time=30.0, sq1="", sq2="", sq3="",
             bgColor=clr.background2, points = 0, decrease = 1):
     utils.drawBoard(x_0, y_0, x, y, screen, c1, c2, highlight, hlColor)
     lines = ['8', '7', '6', '5', '4', '3', '2', '1']
     collumns = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h']
     running = True
     timeRemaining = time
-    timerRect = showTimer(tx_0, ty_0, tFontSize, screen, timeRemaining, cDf)
+    timerRect = showTimer(tx_0, ty_0, tFontSize, screen, timeRemaining, cDf, bgColor)
     clock = pygame.time.Clock()
     while running:
         screen.fill(bgColor, timerRect)
-        timerRect = showTimer(tx_0, ty_0, tFontSize, screen, timeRemaining, cDf)
-        showMoves(sq1, sq1x, sq1y, fsq1, sq2, sq2x, sq2y, fsq2, sq3, sq3x, sq3y, fsq3, screen, cDf)
-        utils.write_topleft(px_0, py_0, pFontSize, screen, str(points), cDf)
+        timerRect = showTimer(tx_0, ty_0, tFontSize, screen, timeRemaining, cDf, bgColor)
+        showMoves(sq1, sq1x, sq1y, fsq1, sq2, sq2x, sq2y, fsq2, sq3, sq3x, sq3y, fsq3, screen, cDf, bgColor)
+        utils.write_topleft(px_0, py_0, pFontSize, screen, str(points), cDf, bgColor)
         # Desenhar o tabuleiro por último
         utils.drawBoard(x_0, y_0, x, y, screen, c1, c2, highlight, hlColor)
         timeRemaining -= 1 / 60
@@ -55,8 +55,55 @@ def CL_game(x_0, y_0, x, y, tx_0, ty_0, tFontSize, px_0, py_0, pFontSize, screen
                                             fsq1, fsq2, fsq3, sq1x, sq1y, sq2x, sq2y, sq3x, sq3y, c1, c2, cDf,
                                             highlight, hlColor, timeRemaining - decrease, sq2, sq3, sqNew, bgColor, points)
 
-                        
 
+
+def CL_game_R_test(x_0, y_0, x, y, tx_0, ty_0, tFontSize, px_0, py_0, pFontSize, screen, ansx, ansy, ansf, 
+              c1 = clr.bwhite, c2 = clr.bblack, cDf = clr.black, sq1 = 'a1', sq2 = 'b5', sq3 = 'e6',
+              sq1color = clr.aqua, time = 30.0, bgColor = clr.background2, points = 0, decrease = 1):
+    utils.drawBoard(x_0, y_0, x, y, screen, c1, c2, sq1, sq1color)
+    lines = ['8', '7', '6', '5', '4', '3', '2', '1']
+    collumns = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h']
+    running = True
+    timeRemaining = time
+    timerRect = showTimer(tx_0, ty_0, tFontSize, screen, timeRemaining, cDf)
+    clock = pygame.time.Clock()
+    ans = '' 
+    while running:
+        screen.fill(bgColor, timerRect)
+        timerRect = showTimer(tx_0, ty_0, tFontSize, screen, timeRemaining, cDf)
+        utils.write_topleft(px_0, py_0, pFontSize, screen, str(points), cDf, bgColor)
+        utils.drawBoard(x_0, y_0, x, y, screen, c1, c2, sq1, sq1color)
+        timeRemaining -= 1 / 60       
+        if timeRemaining<=0: #Fim de jogo
+            return(points)
+        ansRect = utils.write_topleft(ansx, ansy, ansf, screen, ans, cDf, bgColor, 8, 8)        
+        clock.tick(60)
+    #Eventos
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                running = False
+            elif event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_BACKSPACE:
+                    # Apaga o último caractere digitado
+                    ans = ans[:-1]
+                elif len(ans) == 0 and event.key >= pygame.K_a and event.key <= pygame.K_h:
+                    # Verifica se o primeiro caractere é uma letra do alfabeto
+                    ans += chr(event.key).lower()
+                elif len(ans) == 1 and event.key >= pygame.K_1 and event.key <= pygame.K_8:
+                    # Verifica se o segundo caractere é um número de 1 a 8
+                    ans += chr(event.key)
+                elif event.key == pygame.K_RETURN and len(ans) == 2:
+                    screen.fill(bgColor, ansRect)
+                    if ans == sq1:
+                        return CL_game_R(x_0, y_0, x, y, tx_0, ty_0, tFontSize, px_0, py_0, pFontSize,
+                                        screen, ansx, ansy, ansf, c1, c2, cDf, sq2, sq3, utils.randomSquare(), sq1color,
+                                        timeRemaining, bgColor, points + 1, decrease)
+                    else:
+                        return CL_game_R(x_0, y_0, x, y, tx_0, ty_0, tFontSize, px_0, py_0, pFontSize,
+                                        screen, ansx, ansy, ansf, c1, c2, cDf, sq1, sq2, sq3, sq1color,
+                                        timeRemaining - decrease, bgColor, points, decrease)
+
+                       
 
 def test():
     pygame.init()
@@ -65,8 +112,6 @@ def test():
     screenWidth, screenHeight = 1000, 800
     screen = pygame.display.set_mode((screenWidth, screenHeight))
     pygame.display.set_caption("ChessLab")
-
-    clock = pygame.time.Clock()
 
     # Tamanho do tabuleiro
     x, y = 720, 720
@@ -81,6 +126,23 @@ def test():
     pygame.quit()
     sys.exit()
 
+def testR():
+    pygame.init()
+
+    # Criando a tela
+    screenWidth, screenHeight = 1000, 800
+    screen = pygame.display.set_mode((screenWidth, screenHeight))
+    pygame.display.set_caption("ChessLab")
+
+    # Tamanho do tabuleiro
+    x, y = 720, 720
+    # Posição inicial para deixar o tabuleiro centralizado
+    x_0 = 40
+    y_0 = (screenHeight - y) // 2
+
+    screen.fill(clr.background2)
+    CL_game_R_test(x_0, y_0, x, y, 775, 300, 120, 864, 200, 100, screen, 784, 464, 100)
+
 
 if __name__ == '__main__':
-    test()
+    print(testR())+

@@ -27,8 +27,7 @@ def CL_game(x_0, y_0, x, y, tx_0, ty_0, tFontSize, px_0, py_0, pFontSize, screen
         timerRect = showTimer(tx_0, ty_0, tFontSize, screen, timeRemaining, cDf)
         showMoves(sq1, sq1x, sq1y, fsq1, sq2, sq2x, sq2y, fsq2, sq3, sq3x, sq3y, fsq3, screen, cDf)
         utils.write_topleft(px_0, py_0, pFontSize, screen, str(points), cDf)
-        # Desenhar o tabuleiro por último
-        #utils.drawBoard(x_0, y_0, x, y, screen, c1, c2, highlight, hlColor)
+        utils.drawBoard(x_0, y_0, x, y, screen, c1, c2, highlight, hlColor)
         timeRemaining -= 1 / 60
         if timeRemaining<=0: #Fim de jogo
             mqtt.msgOut('END')
@@ -56,8 +55,8 @@ def CL_game(x_0, y_0, x, y, tx_0, ty_0, tFontSize, px_0, py_0, pFontSize, screen
                                             highlight, hlColor, timeRemaining - decrease, sq2, sq3, sqNew, bgColor, points)
 
 
-def CL_game_R(x_0, y_0, x, y, tx_0, ty_0, tFontSize, px_0, py_0, pFontSize, screen, fsq1, fsq2, fsq3, sq1x, sq1y, sq2x, sq2y, sq3x, sq3y,
-            c1=clr.white, c2=clr.black, cDf=clr.black, hlColor=clr.red, time=30.0, sq1="a1", sq2="a1", sq3="a1",
+def CL_game_R(x_0, y_0, x, y, tx_0, ty_0, tFontSize, px_0, py_0, pFontSize, screen, ansx, ansy, ansf,
+            c1=clr.bwhite, c2=clr.bblack, cDf=clr.black, hlColor=clr.aqua, time=30.0, sq1="a1", sq2="a1", sq3="a1",
             bgColor=clr.background2, points = 0, decrease = 1):
     utils.drawBoard(x_0, y_0, x, y, screen, c1, c2, sq1, hlColor)
     lines = ['8', '7', '6', '5', '4', '3', '2', '1']
@@ -66,12 +65,12 @@ def CL_game_R(x_0, y_0, x, y, tx_0, ty_0, tFontSize, px_0, py_0, pFontSize, scre
     timeRemaining = time
     timerRect = showTimer(tx_0, ty_0, tFontSize, screen, timeRemaining, cDf)
     clock = pygame.time.Clock()
+    ans = ''
     while running:
         screen.fill(bgColor, timerRect)
         timerRect = showTimer(tx_0, ty_0, tFontSize, screen, timeRemaining, cDf)
         utils.write_topleft(px_0, py_0, pFontSize, screen, str(points), cDf)
-        # Desenhar o tabuleiro por último
-        utils.drawBoard(x_0, y_0, x, y, screen, c1, c2, sq1, hlColor)
+        utils.write_topleft(ansx, ansy, ansf, screen, ans, cDf, 0, 0)
         timeRemaining -= 1 / 60
         if timeRemaining<=0: #Fim de jogo
             mqtt.msgOut('END')

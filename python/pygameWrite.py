@@ -2,17 +2,6 @@ import pygame
 import sys
 
 def receive_input(font):
-    # Inicializando o Pygame
-    pygame.init()
-
-    # Definindo as cores
-    WHITE = (255, 255, 255)
-    BLACK = (0, 0, 0)
-
-    # Definindo as configurações da janela
-    WIDTH, HEIGHT = 400, 300
-    WINDOW_SIZE = (WIDTH, HEIGHT)
-    WINDOW_CENTER = (WIDTH // 2, HEIGHT // 2)
 
     # Configurando a janela
     screen = pygame.display.set_mode(WINDOW_SIZE)
@@ -35,7 +24,7 @@ def receive_input(font):
                     if event.key == pygame.K_BACKSPACE:
                         # Apaga o último caractere digitado
                         typed_text = typed_text[:-1]
-                    elif len(typed_text) == 0 and event.key >= pygame.K_a and event.key <= pygame.K_h56:
+                    elif len(typed_text) == 0 and event.key >= pygame.K_a and event.key <= pygame.K_h:
                         # Verifica se o primeiro caractere é uma letra do alfabeto
                         typed_text += chr(event.key).lower()
                     elif len(typed_text) == 1 and event.key >= pygame.K_1 and event.key <= pygame.K_8:
@@ -46,9 +35,6 @@ def receive_input(font):
                         input_string = typed_text
                         typed_text = ""  # Limpa o texto digitado para a próxima entrada
                         return input_string
-
-            # Limpando a tela
-            screen.fill(WHITE)
 
             # Desenhando o texto na tela
             text_surface = font.render("Texto digitado: " + typed_text, True, BLACK)

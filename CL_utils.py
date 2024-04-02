@@ -1,34 +1,39 @@
 import pygame
 import CL_colors as clrs
+import random
+import string
 
 #Funçoes de escrita
-def write_topmid(x_c, y_0, fontSize, screen, text, color = clrs.white, inflationx = 0, inflationy = 0):
+def write_topmid(x_c, y_0, fontSize, screen, text, color = clrs.white, bg = clrs.background2, inflationx = 0, inflationy = 0):
     font = pygame.font.Font(None, fontSize)
     display = font.render(text, True, color)
     displayRect = display.get_rect()
     displayRect.midtop = (x_c, y_0)
+    screen.fill(bg, displayRect)
     screen.blit(display, displayRect)
     finalRect = displayRect.inflate(inflationx, inflationy)
     finalRect.center = displayRect.center
     pygame.display.flip()
     return(finalRect)
 
-def write_topleft(x_0, y_0, fontSize, screen, text, color = clrs.white, inflationx = 0, inflationy = 0):
+def write_topleft(x_0, y_0, fontSize, screen, text, color = clrs.white, bg = clrs.background2, inflationx = 0, inflationy = 0):
     font = pygame.font.Font(None, fontSize)
     display = font.render(text, True, color)
     displayRect = display.get_rect()
     displayRect.topleft = (x_0, y_0)
+    screen.fill(bg, displayRect)
     screen.blit(display, displayRect)
     finalRect = displayRect.inflate(inflationx, inflationy)
     finalRect.center = displayRect.center
     pygame.display.flip()
     return(finalRect)
 
-def write_midleft(x_0, y_c, fontSize, screen, text, color = clrs.white, inflationx = 0, inflationy = 0):
+def write_midleft(x_0, y_c, fontSize, screen, text, color = clrs.white, bg = clrs.background2, inflationx = 0, inflationy = 0):
     font = pygame.font.Font(None, fontSize)
     display = font.render(text, True, color)
     displayRect = display.get_rect()
     displayRect.midleft = (x_0, y_c)
+    screen.fill(bg, displayRect)
     screen.blit(display, displayRect)
     finalRect = displayRect.inflate(inflationx, inflationy)
     finalRect.center = displayRect.center
@@ -72,3 +77,13 @@ def drawBoard(x_0, y_0, x, y, screen, c1 = clrs.white, c2 = clrs.black, highligh
             elif color == c2:
                 color = c1
     pygame.display.flip()
+
+def randomSquare():
+    letras = string.ascii_lowercase[:8]  # A a H
+    numeros = string.digits[1:]  # 1 a 8
+    
+    primeiro_caracter = random.choice(letras)
+    segundo_caracter = random.choice(numeros)
+    
+    return primeiro_caracter + segundo_caracter
+
