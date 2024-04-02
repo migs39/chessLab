@@ -28,7 +28,7 @@ def CL_game(x_0, y_0, x, y, tx_0, ty_0, tFontSize, px_0, py_0, pFontSize, screen
         showMoves(sq1, sq1x, sq1y, fsq1, sq2, sq2x, sq2y, fsq2, sq3, sq3x, sq3y, fsq3, screen, cDf)
         utils.write_topleft(px_0, py_0, pFontSize, screen, str(points), cDf)
         # Desenhar o tabuleiro por último
-        utils.drawBoard(x_0, y_0, x, y, screen, c1, c2, highlight, hlColor)
+        #utils.drawBoard(x_0, y_0, x, y, screen, c1, c2, highlight, hlColor)
         timeRemaining -= 1 / 60
         if timeRemaining<=0: #Fim de jogo
             mqtt.msgOut('END')
@@ -55,6 +55,48 @@ def CL_game(x_0, y_0, x, y, tx_0, ty_0, tFontSize, px_0, py_0, pFontSize, screen
                                             fsq1, fsq2, fsq3, sq1x, sq1y, sq2x, sq2y, sq3x, sq3y, c1, c2, cDf,
                                             highlight, hlColor, timeRemaining - decrease, sq2, sq3, sqNew, bgColor, points)
 
+
+def CL_game_R(x_0, y_0, x, y, tx_0, ty_0, tFontSize, px_0, py_0, pFontSize, screen, fsq1, fsq2, fsq3, sq1x, sq1y, sq2x, sq2y, sq3x, sq3y,
+            c1=clr.white, c2=clr.black, cDf=clr.black, hlColor=clr.red, time=30.0, sq1="a1", sq2="a1", sq3="a1",
+            bgColor=clr.background2, points = 0, decrease = 1):
+    utils.drawBoard(x_0, y_0, x, y, screen, c1, c2, sq1, hlColor)
+    lines = ['8', '7', '6', '5', '4', '3', '2', '1']
+    collumns = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h']
+    running = True
+    timeRemaining = time
+    timerRect = showTimer(tx_0, ty_0, tFontSize, screen, timeRemaining, cDf)
+    clock = pygame.time.Clock()
+    while running:
+        screen.fill(bgColor, timerRect)
+        timerRect = showTimer(tx_0, ty_0, tFontSize, screen, timeRemaining, cDf)
+        utils.write_topleft(px_0, py_0, pFontSize, screen, str(points), cDf)
+        # Desenhar o tabuleiro por último
+        utils.drawBoard(x_0, y_0, x, y, screen, c1, c2, sq1, hlColor)
+        timeRemaining -= 1 / 60
+        if timeRemaining<=0: #Fim de jogo
+            mqtt.msgOut('END')
+            return(points)
+        clock.tick(60)
+        # Eventos
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                running = False
+            elif event.type == pygame.MOUSEBUTTONDOWN:
+                if event.button == 1:
+                    mx, my = pygame.mouse.get_pos()
+                    if x_0 <= mx <= x_0 + x and y_0 <= my <= x_0 + y:  # Se o click foi no tabuleiro
+                        name = collumns[int((mx - x_0) // (x / 8))] + lines[int((my - y_0) // (y / 8))]
+                        mqtt.sqrOut(name)
+                        acertou = mqtt.msgIn() #Espera um bool acertou
+                        if acertou:
+                            sqNew = mqtt.sqrIn() #Espera 2 numeros de 1 a 8 representando o quadrado no final da memoria
+                            return CL_game(x_0, y_0, x, y, tx_0, ty_0, tFontSize, px_0, py_0, pFontSize, screen,
+                                            fsq1, fsq2, fsq3, sq1x, sq1y, sq2x, sq2y, sq3x, sq3y, c1, c2, cDf,
+                                            highlight, hlColor, timeRemaining, sq2, sq3, sqNew, bgColor, points+1)
+                        elif not acertou:
+                            return CL_game(x_0, y_0, x, y, tx_0, ty_0, tFontSize, px_0, py_0, pFontSize, screen,
+                                            fsq1, fsq2, fsq3, sq1x, sq1y, sq2x, sq2y, sq3x, sq3y, c1, c2, cDf,
+                                            highlight, hlColor, timeRemaining - decrease, sq2, sq3, sqNew, bgColor, points)
                         
 
 
