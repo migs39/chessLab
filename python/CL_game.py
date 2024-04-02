@@ -61,8 +61,6 @@ def CL_game_R_test(x_0, y_0, x, y, tx_0, ty_0, tFontSize, px_0, py_0, pFontSize,
               c1 = clr.bwhite, c2 = clr.bblack, cDf = clr.black, sq1 = 'a1', sq2 = 'b5', sq3 = 'e6',
               sq1color = clr.aqua, time = 30.0, bgColor = clr.background2, points = 0, decrease = 1):
     utils.drawBoard(x_0, y_0, x, y, screen, c1, c2, sq1, sq1color)
-    lines = ['8', '7', '6', '5', '4', '3', '2', '1']
-    collumns = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h']
     running = True
     timeRemaining = time
     timerRect = showTimer(tx_0, ty_0, tFontSize, screen, timeRemaining, cDf)
@@ -85,6 +83,7 @@ def CL_game_R_test(x_0, y_0, x, y, tx_0, ty_0, tFontSize, px_0, py_0, pFontSize,
             elif event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_BACKSPACE:
                     # Apaga o último caractere digitado
+                    screen.fill(bgColor, ansRect)
                     ans = ans[:-1]
                 elif len(ans) == 0 and event.key >= pygame.K_a and event.key <= pygame.K_h:
                     # Verifica se o primeiro caractere é uma letra do alfabeto
