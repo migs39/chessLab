@@ -1,5 +1,5 @@
 import pygame
-import python.CL_colors as clrs
+import CL_colors as clrs
 import random
 import string
 

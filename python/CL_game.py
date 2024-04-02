@@ -1,8 +1,8 @@
 import pygame
 import sys
-import python.CL_utils as utils
-import python.CL_colors as clr
-import python.CL_mqtt as mqtt
+import CL_utils as utils
+import CL_colors as clr
+import CL_mqtt as mqtt
 
 def showMoves(sq1, x1, y1, f1, sq2, x2, y2, f2, sq3, x3, y3, f3, screen, color=clr.black, bg = clr.background2):
     utils.write_midleft(x1, y1, f1, screen, sq1, color, bg)
@@ -95,11 +95,11 @@ def CL_game_R_test(x_0, y_0, x, y, tx_0, ty_0, tFontSize, px_0, py_0, pFontSize,
                 elif event.key == pygame.K_RETURN and len(ans) == 2:
                     screen.fill(bgColor, ansRect)
                     if ans == sq1:
-                        return CL_game_R(x_0, y_0, x, y, tx_0, ty_0, tFontSize, px_0, py_0, pFontSize,
+                        return CL_game_R_test(x_0, y_0, x, y, tx_0, ty_0, tFontSize, px_0, py_0, pFontSize,
                                         screen, ansx, ansy, ansf, c1, c2, cDf, sq2, sq3, utils.randomSquare(), sq1color,
                                         timeRemaining, bgColor, points + 1, decrease)
                     else:
-                        return CL_game_R(x_0, y_0, x, y, tx_0, ty_0, tFontSize, px_0, py_0, pFontSize,
+                        return CL_game_R_test(x_0, y_0, x, y, tx_0, ty_0, tFontSize, px_0, py_0, pFontSize,
                                         screen, ansx, ansy, ansf, c1, c2, cDf, sq1, sq2, sq3, sq1color,
                                         timeRemaining - decrease, bgColor, points, decrease)
 

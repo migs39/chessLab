@@ -1,8 +1,8 @@
 import pygame
 import CL_game as game
-import python.CL_menus as menus
-import python.CL_colors as clr
-import python.CL_mqtt as mqtt
+import CL_menus as menus
+import CL_colors as clr
+import CL_mqtt as mqtt
 
 def main():
     
