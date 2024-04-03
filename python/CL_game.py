@@ -5,12 +5,12 @@ import CL_colors as clr
 import CL_mqtt as mqtt
 
 def showMoves(sq1, x1, y1, f1, sq2, x2, y2, f2, sq3, x3, y3, f3, screen, color=clr.black, bg = clr.background2):
-    utils.write_midleft(x1, y1, f1, screen, sq1, color, bg)
-    utils.write_midleft(x2, y2, f2, screen, sq2, color, bg)
-    utils.write_midleft(x3, y3, f3, screen, sq3, color, bg)
+    utils.write_midleft(x1, y1, f1, screen, sq1, color, bg, 8, 8)
+    utils.write_midleft(x2, y2, f2, screen, sq2, color, bg, 8, 8)
+    utils.write_midleft(x3, y3, f3, screen, sq3, color, bg, 8, 8)
 
 def showTimer(x_0, y_0, fontSize, screen, time=30, color=clr.black, bg = clr.background2):
-    return utils.write_topleft(x_0, y_0, fontSize, screen, "{:.1f}".format(time), color, bg)
+    return utils.write_topleft(x_0, y_0, fontSize, screen, "{:.1f}".format(time), color, bg, 8, 8)
 
 def CL_game(x_0, y_0, x, y, tx_0, ty_0, tFontSize, px_0, py_0, pFontSize, screen, fsq1, fsq2, fsq3, sq1x, sq1y, sq2x, sq2y, sq3x, sq3y,
             c1=clr.bwhite, c2=clr.bblack, cDf=clr.black, highlight=None, hlColor=clr.red, time=30.0, sq1="", sq2="", sq3="",
@@ -55,6 +55,51 @@ def CL_game(x_0, y_0, x, y, tx_0, ty_0, tFontSize, px_0, py_0, pFontSize, screen
                                             fsq1, fsq2, fsq3, sq1x, sq1y, sq2x, sq2y, sq3x, sq3y, c1, c2, cDf,
                                             highlight, hlColor, timeRemaining - decrease, sq2, sq3, sqNew, bgColor, points)
 
+
+def CL_game_test(x_0, y_0, x, y, tx_0, ty_0, tFontSize, px_0, py_0, pFontSize, screen, fsq1, fsq2, fsq3, sq1x, sq1y, sq2x, sq2y, sq3x, sq3y,
+            c1=clr.bwhite, c2=clr.bblack, cDf=clr.black, highlight=None, hlColor=clr.red, time=30.0, sq1="", sq2="", sq3="",
+            bgColor=clr.background2, points = 0, decrease = 1):
+    utils.drawBoard(x_0, y_0, x, y, screen, c1, c2, highlight, hlColor)
+    lines = ['8', '7', '6', '5', '4', '3', '2', '1']
+    collumns = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h']
+    running = True
+    timeRemaining = time
+    timerRect = showTimer(tx_0, ty_0, tFontSize, screen, timeRemaining, cDf, bgColor)
+    clock = pygame.time.Clock()
+    while running:
+        screen.fill(bgColor, timerRect)
+        timerRect = showTimer(tx_0, ty_0, tFontSize, screen, timeRemaining, cDf, bgColor)
+        showMoves(sq1, sq1x, sq1y, fsq1, sq2, sq2x, sq2y, fsq2, sq3, sq3x, sq3y, fsq3, screen, cDf, bgColor)
+        utils.write_topleft(px_0, py_0, pFontSize, screen, str(points), cDf, bgColor)
+        # Desenhar o tabuleiro por último
+        utils.drawBoard(x_0, y_0, x, y, screen, c1, c2, highlight, hlColor)
+        timeRemaining -= 1 / 60
+        if timeRemaining<=0: #Fim de jogo
+            #mqtt.msgOut('112')
+            return(points)
+        clock.tick(60)
+        # Eventos
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                running = False
+            elif event.type == pygame.MOUSEBUTTONDOWN:
+                if event.button == 1:
+                    mx, my = pygame.mouse.get_pos()
+                    if x_0 <= mx <= x_0 + x and y_0 <= my <= x_0 + y:  # Se o click foi no tabuleiro
+                        name = collumns[int((mx - x_0) // (x / 8))] + lines[int((my - y_0) // (y / 8))]
+                        #mqtt.sqrOut(name)
+                        #acertou = mqtt.msgIn() #Espera um bool acertou
+                        acertou = name == sq1
+                        if acertou:
+                            #sqNew = mqtt.sqrIn() #Espera 2 numeros de 1 a 8 representando o quadrado no final da memoria
+                            sqNew = utils.randomSquare()
+                            return CL_game_test(x_0, y_0, x, y, tx_0, ty_0, tFontSize, px_0, py_0, pFontSize, screen,
+                                            fsq1, fsq2, fsq3, sq1x, sq1y, sq2x, sq2y, sq3x, sq3y, c1, c2, cDf,
+                                            highlight, hlColor, timeRemaining, sq2, sq3, sqNew, bgColor, points+1)
+                        elif not acertou:
+                            return CL_game_test(x_0, y_0, x, y, tx_0, ty_0, tFontSize, px_0, py_0, pFontSize, screen,
+                                            fsq1, fsq2, fsq3, sq1x, sq1y, sq2x, sq2y, sq3x, sq3y, c1, c2, cDf,
+                                            highlight, hlColor, timeRemaining - decrease, sq1, sq2, sq3, bgColor, points)
 
 
 def CL_game_R_test(x_0, y_0, x, y, tx_0, ty_0, tFontSize, px_0, py_0, pFontSize, screen, ansx, ansy, ansf, 
@@ -119,7 +164,7 @@ def test():
     y_0 = (screenHeight - y) // 2
 
     screen.fill(clr.background2)
-    CL_game(x_0, y_0, x, y, 775, 300, 120, 864, 200, 100, screen, 100, 70, 50, 784, 464, 872, 464, 936, 464, clr.bwhite, 
+    CL_game_test(x_0, y_0, x, y, 775, 300, 120, 864, 200, 100, screen, 100, 70, 50, 784, 464, 872, 464, 936, 464, clr.bwhite, 
             clr.bblack, clr.white, None, clr.green, 30, 'a1', 'b2', 'e4', clr.background2, 0, 1)   
     # Encerra o pygame
     pygame.quit()
@@ -144,4 +189,4 @@ def testR():
 
 
 if __name__ == '__main__':
-    testR()
+    test()
