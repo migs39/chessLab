@@ -8,10 +8,10 @@ def write_topmid(x_c, y_0, fontSize, screen, text, color = clrs.white, bg = clrs
     display = font.render(text, True, color)
     displayRect = display.get_rect()
     displayRect.midtop = (x_c, y_0)
-    screen.fill(bg, displayRect)
-    screen.blit(display, displayRect)
     finalRect = displayRect.inflate(inflationx, inflationy)
     finalRect.center = displayRect.center
+    screen.fill(bg, finalRect)
+    screen.blit(display, displayRect)
     pygame.display.flip()
     return(finalRect)
 
@@ -20,10 +20,10 @@ def write_topleft(x_0, y_0, fontSize, screen, text, color = clrs.white, bg = clr
     display = font.render(text, True, color)
     displayRect = display.get_rect()
     displayRect.topleft = (x_0, y_0)
-    screen.fill(bg, displayRect)
-    screen.blit(display, displayRect)
     finalRect = displayRect.inflate(inflationx, inflationy)
     finalRect.center = displayRect.center
+    screen.fill(bg, finalRect)
+    screen.blit(display, displayRect)
     pygame.display.flip()
     return(finalRect)
 
@@ -32,10 +32,10 @@ def write_midleft(x_0, y_c, fontSize, screen, text, color = clrs.white, bg = clr
     display = font.render(text, True, color)
     displayRect = display.get_rect()
     displayRect.midleft = (x_0, y_c)
-    screen.fill(bg, displayRect)
-    screen.blit(display, displayRect)
     finalRect = displayRect.inflate(inflationx, inflationy)
     finalRect.center = displayRect.center
+    screen.fill(bg, finalRect)
+    screen.blit(display, displayRect)
     pygame.display.flip()
     return(finalRect)
 
