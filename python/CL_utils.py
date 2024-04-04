@@ -3,7 +3,7 @@ import CL_colors as clrs
 import random
 import os
 
-fontsPath = os.path.join(__file__, '..', '..', 'fonts')
+fontsPath = os.path.join(os.path.dirname(__file__), '..', 'fonts')
 #fontes
 titleFont = os.path.join(fontsPath, 'title', 'IMFGPSC.ttf')
 subtitleFont = os.path.join(fontsPath, 'subtitle', 'Aboreto.ttf') #V
