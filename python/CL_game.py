@@ -157,6 +157,55 @@ def CL_game_R_test(x_0, y_0, x, y, tx_0, ty_0, tFontSize, px_0, py_0, pFontSize,
                                         timeRemaining - decrease, bgColor, points, decrease)
         pygame.display.flip()
                        
+def CL_game_R(x_0, y_0, x, y, tx_0, ty_0, tFontSize, px_0, py_0, pFontSize, screen, ansx, ansy, ansf, 
+              c1 = clr.bwhite, c2 = clr.bblack, cDf = clr.black, sq1 = 'a1', sq2 = 'b5', sq3 = 'e6',
+              sq1color = clr.aqua, time = 30.0, bgColor = clr.background2, points = 0, decrease = 1):
+    utils.drawBoard(x_0, y_0, x, y, screen, c1, c2, sq1, sq1color)
+    running = True
+    timeRemaining = time
+    showTimer(tx_0, ty_0, tFontSize, screen, timeRemaining, cDf)
+    clock = pygame.time.Clock()
+    ans = ''
+    textRect = pygame.Rect(x_0+x, 0, screen.get_width() - x_0 - x, screen.get_height())
+    pygame.display.flip()
+    while running:
+        screen.fill(bgColor, textRect)
+        showTimer(tx_0, ty_0, tFontSize, screen, timeRemaining, cDf)
+        utils.write_topleft(px_0, py_0, pFontSize, screen, str(points), cDf, bgColor, 0, 0, utils.infoFont)
+        utils.drawBoard(x_0, y_0, x, y, screen, c1, c2, sq1, sq1color)
+        timeRemaining -= 1 / 60       
+        if timeRemaining<=0: #Fim de jogo
+            mqtt.msgOut('112')
+            return(points)
+        ansRect = utils.write_topleft(ansx, ansy, ansf, screen, ans, cDf, bgColor, 8, 8, utils.infoFont)        
+        clock.tick(60)
+        #Eventos
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                running = False
+            elif event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_BACKSPACE:
+                    # Apaga o último caractere digitado
+                    ans = ans[:-1]
+                elif len(ans) == 0 and event.key >= pygame.K_a and event.key <= pygame.K_h:
+                    # Verifica se o primeiro caractere é uma letra do alfabeto
+                    ans += chr(event.key).lower()
+                elif len(ans) == 1 and event.key >= pygame.K_1 and event.key <= pygame.K_8:
+                    # Verifica se o segundo caractere é um número de 1 a 8
+                    ans += chr(event.key)
+                elif event.key == pygame.K_RETURN and len(ans) == 2:
+                    mqtt.sqrOut(ans)
+                    acertou = mqtt.msgIn()
+                    if acertou:
+                        return CL_game_R_test(x_0, y_0, x, y, tx_0, ty_0, tFontSize, px_0, py_0, pFontSize,
+                                        screen, ansx, ansy, ansf, c1, c2, cDf, sq2, sq3, mqtt.sqrIn(), sq1color,
+                                        timeRemaining, bgColor, points + 1, decrease)
+                    else:
+                        return CL_game_R_test(x_0, y_0, x, y, tx_0, ty_0, tFontSize, px_0, py_0, pFontSize,
+                                        screen, ansx, ansy, ansf, c1, c2, cDf, sq1, sq2, sq3, sq1color,
+                                        timeRemaining - decrease, bgColor, points, decrease)
+        pygame.display.flip()
+
 
 def test():
     pygame.init()
