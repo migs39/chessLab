@@ -20,7 +20,6 @@ def write_topmid(x_c, y_0, fontSize, screen, text, color = clrs.white, bg = clrs
     finalRect.center = displayRect.center
     screen.fill(bg, finalRect)
     screen.blit(display, displayRect)
-    pygame.display.flip()
     return(finalRect)
 
 def write_topleft(x_0, y_0, fontSize, screen, text, color = clrs.white, bg = clrs.background2, inflationx = 0, inflationy = 0, font = None):
@@ -32,7 +31,6 @@ def write_topleft(x_0, y_0, fontSize, screen, text, color = clrs.white, bg = clr
     finalRect.center = displayRect.center
     screen.fill(bg, finalRect)
     screen.blit(display, displayRect)
-    pygame.display.flip()
     return(finalRect)
 
 def write_midleft(x_0, y_c, fontSize, screen, text, color = clrs.white, bg = clrs.background2, inflationx = 0, inflationy = 0, font = None):
@@ -44,7 +42,6 @@ def write_midleft(x_0, y_c, fontSize, screen, text, color = clrs.white, bg = clr
     finalRect.center = displayRect.center
     screen.fill(bg, finalRect)
     screen.blit(display, displayRect)
-    pygame.display.flip()
     return(finalRect)
 
 #------------------------------------------------------------------------------------
@@ -83,7 +80,6 @@ def drawBoard(x_0, y_0, x, y, screen, c1 = clrs.white, c2 = clrs.black, highligh
                 color = c2
             elif color == c2:
                 color = c1
-    pygame.display.flip()
 
 def randomSquare():
     letras = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h']
