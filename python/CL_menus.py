@@ -15,7 +15,7 @@ def mainMenu(screen, xcTitle, yTitle, fTitle, xcBoard, ycBoard, lenghtBoard, xcP
     running = True
     while running:
         # Escreve o Título
-        utils.write_topmid(xcTitle, yTitle, fTitle, screen, 'Chess Lab', dfColor, clr.background2)
+        utils.write_topmid(xcTitle, yTitle, fTitle, screen, 'Chess Lab', dfColor, clr.background2, font = utils.titleFont)
         # Desenha o tabuleiro
         xBoard = xcBoard - lenghtBoard/2
         yBoard = ycBoard - lenghtBoard/2
@@ -23,16 +23,16 @@ def mainMenu(screen, xcTitle, yTitle, fTitle, xcBoard, ycBoard, lenghtBoard, xcP
 
         # Cria os botões
         buttons = []
-        playButton = utils.write_topmid(xcPlay, yPlay, fPlay, screen, 'Jogar', dfColor, clr.background2, xInf, yInf)
+        playButton = utils.write_topmid(xcPlay, yPlay, fPlay, screen, 'Jogar', dfColor, clr.background2, xInf, yInf, font = utils.buttonFont)
         buttons.append(playButton)
 
-        recordsButton = utils.write_topmid(xcRecords, yRecords, fRecords, screen, 'Melhores Pontuações', dfColor, clr.background2, xInf, yInf)
+        recordsButton = utils.write_topmid(xcRecords, yRecords, fRecords, screen, 'Melhores Pontuações', dfColor, clr.background2, xInf, yInf, font = utils.buttonFont)
         buttons.append(recordsButton)
 
-        creditsButton = utils.write_topmid(xcCredits, yCredits, fCredits, screen, 'Créditos', dfColor, clr.background2, xInf, yInf)
+        creditsButton = utils.write_topmid(xcCredits, yCredits, fCredits, screen, 'Créditos', dfColor, clr.background2, xInf, yInf, font = utils.buttonFont)
         buttons.append(creditsButton)
 
-        quitButton = utils.write_topmid(xcQuit, yQuit, fQuit, screen, 'Sair', dfColor, clr.background2, xInf, yInf)
+        quitButton = utils.write_topmid(xcQuit, yQuit, fQuit, screen, 'Sair', dfColor, clr.background2, xInf, yInf, font = utils.buttonFont)
         buttons.append(quitButton)
 
         boardButton = pygame.Rect(xBoard, yBoard, lenghtBoard, lenghtBoard)
@@ -48,8 +48,8 @@ def mainMenu(screen, xcTitle, yTitle, fTitle, xcBoard, ycBoard, lenghtBoard, xcP
                         if (button.left < mx < button.right) and (button.top < my < button.bottom):
                             if button == playButton:
                                 screen.fill(bgColor)
-                                return configMenu(screen, bgColor, 96, 96, 64, 96, 336, 64, 240, 240, 408, 240, 576, 240, 56,
-                                           16, 8, 240, 472, 408, 472, 576, 472, 56, 16, 8, 800, 680, 72, 16, 8)
+                                return configMenu(screen, bgColor, 96, 96, 48, 80, 336, 48, 240, 224, 408, 224, 576, 224, 56,
+                                           16, 8, 240, 456, 408, 456, 576, 456, 56, 16, 8, 800, 680, 40, 16, 8)
                             if button == boardButton:
                                 clr.switchcolor()
                                 return mainMenu(screen, xcTitle, yTitle, fTitle, xcBoard, ycBoard, lenghtBoard, xcPlay,
@@ -80,8 +80,8 @@ def configMenu(screen, bgColor, tTitlex, tTitley, tTitlef, dTitlex, dTitley, dTi
     running = True
     while running:
         #escrevendo os titulos
-        utils.write_topleft(tTitlex, tTitley, tTitlef, screen, "Selecione o tempo:", dfColor, clr.background2)
-        utils.write_topleft(dTitlex, dTitley, dTitlef, screen, "Selecione o decremento:", dfColor, clr.background2)
+        utils.write_topleft(tTitlex, tTitley, tTitlef, screen, "Selecione o tempo:", dfColor, clr.background2, font = utils.subtitleFont)
+        utils.write_topleft(dTitlex, dTitley, dTitlef, screen, "Selecione o decremento:", dfColor, clr.background2, font = utils.subtitleFont)
 
 
         #Escrevendo os botoes
@@ -91,21 +91,21 @@ def configMenu(screen, bgColor, tTitlex, tTitley, tTitlef, dTitlex, dTitley, dTi
             color = spColor
         else:
             color = dfColor
-        t1Button = utils.write_topmid(t1x_c,t1y, tf, screen, t1, color, clr.background2, tinfx, tinfy)
+        t1Button = utils.write_topmid(t1x_c,t1y, tf, screen, t1, color, clr.background2, tinfx, tinfy, font = utils.infoFont)
         Buttons.append(t1Button)
 
         if T == t2:
             color = spColor
         else:
             color = dfColor
-        t2Button = utils.write_topmid(t2x_c,t2y, tf, screen, t2, color, clr.background2, tinfx, tinfy)
+        t2Button = utils.write_topmid(t2x_c,t2y, tf, screen, t2, color, clr.background2, tinfx, tinfy, font = utils.infoFont)
         Buttons.append(t2Button)
 
         if T == t3:
             color = spColor
         else:
             color = dfColor
-        t3Button = utils.write_topmid(t3x_c,t3y, tf, screen, t3, color, clr.background2, tinfx, tinfy)
+        t3Button = utils.write_topmid(t3x_c,t3y, tf, screen, t3, color, clr.background2, tinfx, tinfy, font = utils.infoFont)
         Buttons.append(t3Button)
 
 
@@ -113,25 +113,25 @@ def configMenu(screen, bgColor, tTitlex, tTitley, tTitlef, dTitlex, dTitley, dTi
             color = spColor
         else:
             color = dfColor
-        d1Button = utils.write_topmid(d1x_c, d1y, df, screen, d1, color, clr.background2, dinfx, dinfy)
+        d1Button = utils.write_topmid(d1x_c, d1y, df, screen, d1, color, clr.background2, dinfx, dinfy, font = utils.infoFont)
         Buttons.append(d1Button)
         
         if D == d2:
             color = spColor
         else:
             color = dfColor
-        d2Button = utils.write_topmid(d2x_c, d2y, df, screen, d2, color, clr.background2, dinfx, dinfy)
+        d2Button = utils.write_topmid(d2x_c, d2y, df, screen, d2, color, clr.background2, dinfx, dinfy, font = utils.infoFont)
         Buttons.append(d2Button)
 
         if D == d3:
             color = spColor
         else:
             color = dfColor
-        d3Button = utils.write_topmid(d3x_c, d3y, df, screen, d3, color, clr.background2, dinfx, dinfy)
+        d3Button = utils.write_topmid(d3x_c, d3y, df, screen, d3, color, clr.background2, dinfx, dinfy, font = utils.infoFont)
         Buttons.append(d3Button)
 
         
-        startButton = utils.write_topmid(startx_c, starty, startf, screen, 'Começar', dfColor, clr.background2, startInfx, startInfy)
+        startButton = utils.write_topmid(startx_c, starty, startf, screen, 'Começar', dfColor, clr.background2, startInfx, startInfy, font = utils.buttonFont)
         Buttons.append(startButton)
 
         #conferindo eventos
@@ -199,8 +199,8 @@ def main():
     #configMenu(screen, 96, 96, 64, 96, 336, 64, 240, 240, 408, 240, 576, 240, 56,
     #               16, 8, 240, 472, 408, 472, 576, 472, 56, 16, 8, 800, 680, 72, 16, 8)
     screen.fill(clr.background2)
-    print(mainMenu(screen, 500, 80, 240, 256, 520, 344, 720, 384, 64, 720, 464, 64, 720, 544,
-             64, 720, 624, 64, 16, 8, clr.white, clr.background2))
+    print(mainMenu(screen, 500, 80, 160, 256, 520, 344, 720, 384, 40, 720, 464, 40, 720, 544,
+             40, 720, 624, 48, 16, 8, clr.white, clr.background2))
 
 if __name__ == '__main__':
     main()

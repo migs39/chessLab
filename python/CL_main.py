@@ -19,8 +19,8 @@ def main():
     y_0 = (screenHeight - y)//2
     pygame.display.set_caption("ChessLab")
     screen.fill(clr.background2)
-    T, D = menus.mainMenu(screen, 500, 80, 240, 256, 520, 344, 720, 384, 64, 720, 464, 64, 720, 544,
-             64, 720, 624, 64, 16, 8, clr.white, clr.background2)
+    T, D = menus.mainMenu(screen, 500, 80, 160, 256, 520, 344, 720, 384, 40, 720, 464, 40, 720, 544,
+             40, 720, 624, 40, 16, 8, clr.white, clr.background2)
     screen.fill(clr.background2)
     mqtt.msgOut("001")
     print("chegou aq ")

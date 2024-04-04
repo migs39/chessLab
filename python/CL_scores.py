@@ -1,7 +1,6 @@
 import os
 
-currentDir = os.getcwd()
-path = os.path.join(currentDir, '..', 'scores')
+path = os.path.join(__file__, '..', '..', '..', 'scores')
 scoresFile = os.path.join(path, 'scores.bin')
 namesFile = os.path.join(path, 'names.txt')
 

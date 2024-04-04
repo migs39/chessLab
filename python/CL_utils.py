@@ -1,10 +1,18 @@
 import pygame
 import CL_colors as clrs
 import random
+import os
+
+fontsPath = os.path.join(__file__, '..', '..', 'fonts')
+#fontes
+titleFont = os.path.join(fontsPath, 'title', 'IMFGPSC.ttf')
+subtitleFont = os.path.join(fontsPath, 'subtitle', 'Aboreto.ttf') #V
+infoFont = os.path.join(fontsPath, 'infos', 'Changa.ttf') #V
+buttonFont = os.path.join(fontsPath, 'buttons', 'Aboreto.ttf')
 
 #Funçoes de escrita
-def write_topmid(x_c, y_0, fontSize, screen, text, color = clrs.white, bg = clrs.background2, inflationx = 0, inflationy = 0):
-    font = pygame.font.Font(None, fontSize)
+def write_topmid(x_c, y_0, fontSize, screen, text, color = clrs.white, bg = clrs.background2, inflationx = 0, inflationy = 0, font = None):
+    font = pygame.font.Font(font, fontSize)
     display = font.render(text, True, color)
     displayRect = display.get_rect()
     displayRect.midtop = (x_c, y_0)
@@ -15,8 +23,8 @@ def write_topmid(x_c, y_0, fontSize, screen, text, color = clrs.white, bg = clrs
     pygame.display.flip()
     return(finalRect)
 
-def write_topleft(x_0, y_0, fontSize, screen, text, color = clrs.white, bg = clrs.background2, inflationx = 0, inflationy = 0):
-    font = pygame.font.Font(None, fontSize)
+def write_topleft(x_0, y_0, fontSize, screen, text, color = clrs.white, bg = clrs.background2, inflationx = 0, inflationy = 0, font = None):
+    font = pygame.font.Font(font, fontSize)
     display = font.render(text, True, color)
     displayRect = display.get_rect()
     displayRect.topleft = (x_0, y_0)
@@ -27,8 +35,8 @@ def write_topleft(x_0, y_0, fontSize, screen, text, color = clrs.white, bg = clr
     pygame.display.flip()
     return(finalRect)
 
-def write_midleft(x_0, y_c, fontSize, screen, text, color = clrs.white, bg = clrs.background2, inflationx = 0, inflationy = 0):
-    font = pygame.font.Font(None, fontSize)
+def write_midleft(x_0, y_c, fontSize, screen, text, color = clrs.white, bg = clrs.background2, inflationx = 0, inflationy = 0, font = None):
+    font = pygame.font.Font(font, fontSize)
     display = font.render(text, True, color)
     displayRect = display.get_rect()
     displayRect.midleft = (x_0, y_c)
@@ -86,4 +94,3 @@ def randomSquare():
     sq = primeiro_caracter + segundo_caracter
     #print(sq)
     return sq
-
