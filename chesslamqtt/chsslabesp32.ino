@@ -14,7 +14,7 @@ const int mqtt_port = 1883;
 
 
 // variaveis
-bool mqttConnected =0;
+bool mqttConnected = 0;
 int buttonState = 0;
 byte geradaColuna = 1;
 byte geradaFileira = 1;
@@ -228,12 +228,11 @@ void loop() {
       client.publish(topic, test);
       geradaColuna = 1;
       geradaFileira = 1;
-    }
+      jogadaSalva = 1;
+    } 
     buttonState = digitalRead(acertoujogada);
     if (buttonState == HIGH) {
       acertou = 0;
-    } else {
-      acertou = 1;
     }
     test[0] = acertou; // Assign the character to the array
     client.publish(topic, test);

@@ -240,9 +240,9 @@ void loop() {
     }
     buttonState = digitalRead(acertoujogada);
     if (buttonState == HIGH) {
-      acertou = 1;
-    } else {
       acertou = 0;
+    } else {
+      acertou = 1;
     }
     test[0] = acertou; // Assign the character to the array
     client.publish(topic, test);
