@@ -15,7 +15,7 @@ def mainMenu(screen, xcTitle, yTitle, fTitle, xcBoard, ycBoard, lenghtBoard, xcP
     running = True
     while running:
         # Escreve o Título
-        utils.write_topmid(xcTitle, yTitle, fTitle, screen, 'Chess Lab', dfColor)
+        utils.write_topmid(xcTitle, yTitle, fTitle, screen, 'Chess Lab', dfColor, clr.background2)
         # Desenha o tabuleiro
         xBoard = xcBoard - lenghtBoard/2
         yBoard = ycBoard - lenghtBoard/2
@@ -23,16 +23,16 @@ def mainMenu(screen, xcTitle, yTitle, fTitle, xcBoard, ycBoard, lenghtBoard, xcP
 
         # Cria os botões
         buttons = []
-        playButton = utils.write_topmid(xcPlay, yPlay, fPlay, screen, 'Jogar', dfColor, xInf, yInf)
+        playButton = utils.write_topmid(xcPlay, yPlay, fPlay, screen, 'Jogar', dfColor, clr.background2, xInf, yInf)
         buttons.append(playButton)
 
-        recordsButton = utils.write_topmid(xcRecords, yRecords, fRecords, screen, 'Melhores Pontuações', dfColor, xInf, yInf)
+        recordsButton = utils.write_topmid(xcRecords, yRecords, fRecords, screen, 'Melhores Pontuações', dfColor, clr.background2, xInf, yInf)
         buttons.append(recordsButton)
 
-        creditsButton = utils.write_topmid(xcCredits, yCredits, fCredits, screen, 'Créditos', dfColor, xInf, yInf)
+        creditsButton = utils.write_topmid(xcCredits, yCredits, fCredits, screen, 'Créditos', dfColor, clr.background2, xInf, yInf)
         buttons.append(creditsButton)
 
-        quitButton = utils.write_topmid(xcQuit, yQuit, fQuit, screen, 'Sair', dfColor, xInf, yInf)
+        quitButton = utils.write_topmid(xcQuit, yQuit, fQuit, screen, 'Sair', dfColor, clr.background2, xInf, yInf)
         buttons.append(quitButton)
 
         boardButton = pygame.Rect(xBoard, yBoard, lenghtBoard, lenghtBoard)
@@ -61,12 +61,17 @@ def mainMenu(screen, xcTitle, yTitle, fTitle, xcBoard, ycBoard, lenghtBoard, xcP
         pygame.display.flip()
     sys.exit()
 
-
+'''
+def configMenu(screen, bgColor, tTitlex, tTitley, tTitlef, dTitlex, dTitley, dTitlef, t1x_c, t1y, t2x_c, t2y, t3x_c, t3y, tf,
+                tinfx, tinfy, d1x_c, d1y, d2x_c, d2y, d3x_c, d3y, df, dinfx, dinfy, startx_c, starty, startf, startInfx,
+                startInfy, mode0x_c, mode0_y, mode1x_c, mode1y, modef, modeinfx, modeinfy, backx_c, backy, backf, backinfx,
+                backinfy, t1 = '15 s', t2 = '30 s', t3 = '45 s', T = '30 s', d1 = '0 s', d2 = '1 s', d3 = '2 s', D = '1 s',
+                dfColor = clr.white, spColor = clr.aqua):
+'''
 def configMenu(screen, bgColor, tTitlex, tTitley, tTitlef, dTitlex, dTitley, dTitlef, t1x_c, t1y, t2x_c, t2y, t3x_c, t3y, tf,
                 tinfx, tinfy, d1x_c, d1y, d2x_c, d2y, d3x_c, d3y, df, dinfx, dinfy, startx_c, starty, startf, startInfx,
                 startInfy, t1 = '15 s', t2 = '30 s', t3 = '45 s', T = '30 s', d1 = '0 s', d2 = '1 s', d3 = '2 s', D = '1 s',
-                dfColor = clr.white, spColor = clr.aqua):
-    
+                dfColor = clr.white, spColor = clr.aqua): 
     if not T in [t1, t2, t3]:
         raise TypeError('Tempo selecionado não disponível')
     if not D in [d1, d2, d3]:
@@ -75,8 +80,8 @@ def configMenu(screen, bgColor, tTitlex, tTitley, tTitlef, dTitlex, dTitley, dTi
     running = True
     while running:
         #escrevendo os titulos
-        utils.write_topleft(tTitlex, tTitley, tTitlef, screen, "Selecione o tempo:", dfColor)
-        utils.write_topleft(dTitlex, dTitley, dTitlef, screen, "Selecione o decremento:", dfColor)
+        utils.write_topleft(tTitlex, tTitley, tTitlef, screen, "Selecione o tempo:", dfColor, clr.background2)
+        utils.write_topleft(dTitlex, dTitley, dTitlef, screen, "Selecione o decremento:", dfColor, clr.background2)
 
 
         #Escrevendo os botoes
@@ -86,21 +91,21 @@ def configMenu(screen, bgColor, tTitlex, tTitley, tTitlef, dTitlex, dTitley, dTi
             color = spColor
         else:
             color = dfColor
-        t1Button = utils.write_topmid(t1x_c,t1y, tf, screen, t1, color, tinfx, tinfy)
+        t1Button = utils.write_topmid(t1x_c,t1y, tf, screen, t1, color, clr.background2, tinfx, tinfy)
         Buttons.append(t1Button)
 
         if T == t2:
             color = spColor
         else:
             color = dfColor
-        t2Button = utils.write_topmid(t2x_c,t2y, tf, screen, t2, color, tinfx, tinfy)
+        t2Button = utils.write_topmid(t2x_c,t2y, tf, screen, t2, color, clr.background2, tinfx, tinfy)
         Buttons.append(t2Button)
 
         if T == t3:
             color = spColor
         else:
             color = dfColor
-        t3Button = utils.write_topmid(t3x_c,t3y, tf, screen, t3, color, tinfx, tinfy)
+        t3Button = utils.write_topmid(t3x_c,t3y, tf, screen, t3, color, clr.background2, tinfx, tinfy)
         Buttons.append(t3Button)
 
 
@@ -108,25 +113,25 @@ def configMenu(screen, bgColor, tTitlex, tTitley, tTitlef, dTitlex, dTitley, dTi
             color = spColor
         else:
             color = dfColor
-        d1Button = utils.write_topmid(d1x_c, d1y, df, screen, d1, color, dinfx, dinfy)
+        d1Button = utils.write_topmid(d1x_c, d1y, df, screen, d1, color, clr.background2, dinfx, dinfy)
         Buttons.append(d1Button)
         
         if D == d2:
             color = spColor
         else:
             color = dfColor
-        d2Button = utils.write_topmid(d2x_c, d2y, df, screen, d2, color, dinfx, dinfy)
+        d2Button = utils.write_topmid(d2x_c, d2y, df, screen, d2, color, clr.background2, dinfx, dinfy)
         Buttons.append(d2Button)
 
         if D == d3:
             color = spColor
         else:
             color = dfColor
-        d3Button = utils.write_topmid(d3x_c, d3y, df, screen, d3, color, dinfx, dinfy)
+        d3Button = utils.write_topmid(d3x_c, d3y, df, screen, d3, color, clr.background2, dinfx, dinfy)
         Buttons.append(d3Button)
 
         
-        startButton = utils.write_topmid(startx_c, starty, startf, screen, 'Começar', dfColor, startInfx, startInfy)
+        startButton = utils.write_topmid(startx_c, starty, startf, screen, 'Começar', dfColor, clr.background2, startInfx, startInfy)
         Buttons.append(startButton)
 
         #conferindo eventos
