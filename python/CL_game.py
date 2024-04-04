@@ -177,7 +177,7 @@ def CL_game_R(x_0, y_0, x, y, tx_0, ty_0, tFontSize, px_0, py_0, pFontSize, scre
         if timeRemaining<=0: #Fim de jogo
             mqtt.msgOut('112')
             return(points)
-        ansRect = utils.write_topleft(ansx, ansy, ansf, screen, ans, cDf, bgColor, 8, 8, utils.infoFont)        
+        utils.write_topleft(ansx, ansy, ansf, screen, ans, cDf, bgColor, 8, 8, utils.infoFont)        
         clock.tick(60)
         #Eventos
         for event in pygame.event.get():
