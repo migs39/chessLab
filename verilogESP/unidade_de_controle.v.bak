@@ -7,13 +7,7 @@ module unidade_controle (
     input acertou,
     input temJogada,
     input terminar,
-    input fimEs,
-    input fimSB,
 
-    output reg zeraEs,
-    output reg contaEs,
-    output reg zeraSB,
-    output reg contaSB,
     output reg registraR,
     output reg zeraT,
     output reg zeraR,
@@ -65,20 +59,20 @@ module unidade_controle (
             resetGen:        Eprox = inicial;
             inicial:         Eprox = iniciar ? iniciaElementos : inicial; 
             iniciaElementos: Eprox = iniciaMemoria1;
-            iniciaMemoria1:  Eprox = fimEs ? esperaMemoria1 : iniciaMemoria1;
+            iniciaMemoria1:  Eprox = esperaMemoria1;
             esperaMemoria1:  Eprox = iniciaMemoria2;
-            iniciaMemoria2:  Eprox = fimEs ? esperaMemoria2 : iniciaMemoria2;
+            iniciaMemoria2:  Eprox = esperaMemoria2;
             esperaMemoria2:  Eprox = iniciaMemoria3;
-            iniciaMemoria3:  Eprox = fimEs ? espera : iniciaMemoria3;
+            iniciaMemoria3:  Eprox = espera;
             espera:          Eprox = fimT ? fim : (temJogada ? registra : espera);
             registra:        Eprox = compara;
             compara:         Eprox = acertou ? contaPonto : decresce;
-            decresce:        Eprox = fimSB ? fimJogada : decresce;
+            decresce:        Eprox = fimJogada;
             contaPonto:      Eprox = geraJogada;
             geraJogada:      Eprox = salvaJogada;
-            salvaJogada:     Eprox = fimSB ? fimJogada : salvaJogada;
+            salvaJogada:     Eprox = fimJogada;
             fimJogada:       Eprox = espera;
-            fim:             Eprox = inicial;
+            fim:             Eprox = terminar ? inicial : fim;
             default:         Eprox = resetGen;
         endcase
     end
@@ -86,10 +80,6 @@ module unidade_controle (
     // Logica de saida (maquina Moore)
     always @* begin
 
-        contaEs = ( Eatual == iniciaMemoria1 || Eatual == iniciaMemoria2 || Eatual == iniciaMemoria3) ? 1'b1 : 1'b0;
-        zeraEs = (Eatual == iniciaElementos || Eatual == esperaMemoria1 || Eatual == esperaMemoria2 || Eatual == espera ) ? 1'b1 : 1'b0;
-        contaSB = (Eatual == decresce || Eatual == salvaJogada) ? 1'b1 : 1'b0;
-        zeraSB = (Eatual ==  fimJogada) ? 1'b1 : 1'b0;
         registraR = (Eatual == registra) ? 1'b1 : 1'b0;
         zeraT = (Eatual == iniciaElementos) ? 1'b1 : 1'b0;
         zeraR = (Eatual == inicial) ? 1'b1 : 1'b0;

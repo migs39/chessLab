@@ -1,0 +1,28 @@
+Quartus Prime Archive log --	C:/Projetos/T2A6/projeto/Semana3/circuito_CL_restored/circuito_CL.qarlog
+
+Archive:	C:/Projetos/T2A6/projeto/Semana3/circuito_CL_restored/circuito_CL.qar
+Date:		Mon Mar 25 11:46:25 2024
+Quartus Prime		20.1.1 Build 720 11/11/2020 SJ Lite Edition
+
+	=========== Files Selected: ===========
+C:/Projetos/T2A6/projeto/Semana3/circuito_CL_restored/assignment_defaults.qdf
+C:/Projetos/T2A6/projeto/Semana3/circuito_CL_restored/circuito_CL.qpf
+C:/Projetos/T2A6/projeto/Semana3/circuito_CL_restored/circuito_CL.qsf
+C:/Projetos/T2A6/projeto/Semana3/circuito_CL_restored/circuito_CL.v
+C:/Projetos/T2A6/projeto/Semana3/circuito_CL_restored/comparador_85.v
+C:/Projetos/T2A6/projeto/Semana3/circuito_CL_restored/contador_m.v
+C:/Projetos/T2A6/projeto/Semana3/circuito_CL_restored/contador_mod.v
+C:/Projetos/T2A6/projeto/Semana3/circuito_CL_restored/edge_detector.v
+C:/Projetos/T2A6/projeto/Semana3/circuito_CL_restored/gerador_jogadas.v
+C:/Projetos/T2A6/projeto/Semana3/circuito_CL_restored/gerador_jogadas_inicial.v
+C:/Projetos/T2A6/projeto/Semana3/circuito_CL_restored/hexa7seg.v
+C:/Projetos/T2A6/projeto/Semana3/circuito_CL_restored/hexa7segABC.v
+C:/Projetos/T2A6/projeto/Semana3/circuito_CL_restored/memoria3bit.v
+C:/Projetos/T2A6/projeto/Semana3/circuito_CL_restored/proj_fluxo_dados.v
+C:/Projetos/T2A6/projeto/Semana3/circuito_CL_restored/registrador_3.v
+C:/Projetos/T2A6/projeto/Semana3/circuito_CL_restored/seletorGerador.v
+C:/Projetos/T2A6/projeto/Semana3/circuito_CL_restored/unidade_de_controle.v
+	======= Total: 17 files to archive =======
+
+	================ Status: ===============
+All files archived successfully.

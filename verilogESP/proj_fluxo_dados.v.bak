@@ -6,19 +6,16 @@ module proj_fluxo_dados (
  input registraR,
  input zeraR,
  input zeraG,
- input zeraEs,
- input contaEs,
- input zeraSB,
- input contaSB,
  input jogou,
 
- output fimEs,
- output fimSB,
 
  input [1:0] numJogada,
 
  input numGerador,
  input salvaNova,
+
+ output [2:0]s_linhaGerada,
+ output [2:0]s_colunaGerada,
 
  output acertou,
  output temJogada,
@@ -40,32 +37,11 @@ module proj_fluxo_dados (
     //inputs comparador
     wire [2:0] s_colunaMemoria;
     wire [2:0] s_linhaMemoria;
-	 
-	 wire [2:0] s_linhaGerada;
-    wire [2:0] s_colunaGerada;
 
     wire acertouLinha;
     wire acertouColuna;
-	 
-    contador_m #(15000000, 30) tempoEstado (
-        .clock(clock),
-        //.zera_as(zera_as),
-        .zera_s(zeraEs),
-        .conta(contaEs),
-        //.Q(Q),
-        .fim(fimEs),
-        //.meio(meio)
-    );
 
-    contador_m #(500000, 30) tempoSubirJogada (
-        .clock(clock),
-        //.zera_as(zera_as),
-        .zera_s(zeraSB),
-        .conta(contaSB),
-        //.Q(Q),
-        .fim(fimSB),
-        //.meio(meio)
-    );
+
     memoria3bit mem(
         .clock(clock),
         .reset(zeraG),

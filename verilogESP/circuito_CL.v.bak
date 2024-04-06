@@ -1,6 +1,7 @@
 module circuito_CL (
  input clock,
-// input terminar,
+ input iniciar,
+ input terminar,
  input reset,
  output [6:0] pontos1,
  output [6:0] pontos2,
@@ -8,11 +9,10 @@ module circuito_CL (
  output [6:0] linhaEsperada,
  output [6:0] colunaEsperada,
  output [6:0] db_estado,
- output db_iniciar,
  //inputs esp
  input [2:0] jogadaFileira,
  input [2:0] jogadaColuna,
- input iniciar,
+ input temJogada,
  input fimT,
  //outputs esp
  output [2:0] colunaGerada,
@@ -20,19 +20,14 @@ module circuito_CL (
  output salvaNova,
  output decresceT
 );
+
     wire registraRWire;
 
     wire zeraRWire;
 
     wire zeraGWire;
 
-    wire contaEsWire;
-    wire zeraEsWire;
-    wire fimEsWire;
-
-    wire contaSBWire;
-    wire zeraSBWire;
-    wire fimSBWire;
+    wire contaTWire;
 
     wire acertouWire;
     wire temJogadaWire;
@@ -60,14 +55,7 @@ module circuito_CL (
         .registraR          ( registraRWire ),
         .zeraR              ( zeraRWire ),
         .zeraG              ( zeraGWire ),
-        .zeraEs             ( zeraEsWire ),
-        .contaEs            ( contaEsWire ),
-        .jogou              ( iniciar ),
-        .zeraSB             ( zeraSBWire ),
-        .contaSB            ( contaSBWire ),
-
-        .fimEs              ( fimEsWire ),
-        .fimSB              ( fimSBWire ),
+        .jogou              ( temJogada ),
 
         .numJogada          (numJogada),
 
@@ -76,6 +64,8 @@ module circuito_CL (
         .salvaNova          (salvaNovaWire),
 
         //saida
+        .s_linhaGerada        (linhaGerada),
+        .s_colunaGerada       (colunaGerada),
 
         .acertou            ( acertouWire ),
         .temJogada          ( temJogadaWire ),
@@ -93,15 +83,9 @@ module circuito_CL (
         .fimT         ( fimT ),
         .acertou      ( acertouWire ),
         .temJogada    ( temJogadaWire ),
-        //.terminar     ( terminar ),
-        .fimEs        ( fimEsWire ),
-        .fimSB         ( fimSBWire ),
+        .terminar     ( terminar ),
 
         //saida
-        .zeraSB       ( zeraSBWire ),
-        .contaSB      ( contaSBWire ),
-        .contaEs      (contaEsWire),
-        .zeraEs       (zeraEsWire),
         .registraR    ( registraRWire ),
         .zeraT        ( zeraT ),
         .zeraR        ( zeraRWire ),
@@ -117,7 +101,7 @@ module circuito_CL (
         .numJogada    (numJogada)
     );
 
-    hexa7segJogada Hex0 (
+    hexa7seg Hex0 (
         .hexa               (linhaEsperadaWire),
         .display            (linhaEsperada)
     );
@@ -134,8 +118,5 @@ module circuito_CL (
 
 
     assign db_acertou = acertouWire; 
-	 assign db_iniciar = iniciar;
     assign salvaNova = salvaNovaWire;
-	 assign colunaGerada = colunaEsperadaWire;
-	 assign linhaGerada = linhaEsperadaWire;
 endmodule

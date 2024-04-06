@@ -4,8 +4,8 @@ module memoria3bit(
 
   //iputs do gerador
   input        novaJogada,
-  input  [2:0] colunaGerada,
-  input  [2:0] linhaGerada,
+  input        colunaGerada,
+  input        linhaGerada,
 
   output reg [2:0] coluna,
   output reg [2:0] linha
