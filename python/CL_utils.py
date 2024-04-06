@@ -1,8 +1,9 @@
 import pygame
 import CL_colors as clrs
+
 import random
 import os
-
+import CL_mqtt as mqtt
 fontsPath = os.path.join(os.path.dirname(__file__), '..', 'fonts')
 #fontes
 titleFont = os.path.join(fontsPath, 'title', 'IMFGPSC.ttf')
@@ -86,7 +87,9 @@ def randomSquare():
     numeros = ['8', '7', '6', '5', '4', '3', '2', '1']
     
     primeiro_caracter = random.choice(letras)
+    mqtt.msgOut(str(letras.index(primeiro_caracter) + 1))
     segundo_caracter = random.choice(numeros)
+    mqtt.msgOut(segundo_caracter)
     sq = primeiro_caracter + segundo_caracter
     #print(sq)
     return sq

@@ -277,3 +277,9 @@ def main():
 
 if __name__ == '__main__':
     main()
+
+def finalScreen(screen, points, px, py, pf, bgColor):
+    while True:
+        screen.fill(bgColor)
+        utils.write_midleft(px, py, pf, screen, str(points), clr.white, bgColor, 0, 0, utils.subtitleFont)
+        pygame.display.flip()

@@ -6,8 +6,8 @@ import CL_mqtt as mqtt
 
 def showMoves(sq1, x1, y1, f1, sq2, x2, y2, f2, sq3, x3, y3, f3, screen, color=clr.black, bg = clr.background2, font = utils.infoFont):
     utils.write_midleft(x1, y1, f1, screen, sq1, color, bg, 8, 8, font)
-    utils.write_midleft(x2, y2, f2, screen, sq2, color, bg, 8, 8, font)
-    utils.write_midleft(x3, y3, f3, screen, sq3, color, bg, 8, 8, font)
+    #utils.write_midleft(x2, y2, f2, screen, sq2, color, bg, 8, 8, font)
+    #utils.write_midleft(x3, y3, f3, screen, sq3, color, bg, 8, 8, font)
 
 def showTimer(x_0, y_0, fontSize, screen, time=30, color=clr.black, bg = clr.background2, font = utils.infoFont):
     return utils.write_topleft(x_0, y_0, fontSize, screen, "{:.1f}".format(time), color, bg, 0, 0, font)
@@ -47,16 +47,21 @@ def CL_game(x_0, y_0, x, y, tx_0, ty_0, tFontSize, px_0, py_0, pFontSize, screen
                     if x_0 <= mx <= x_0 + x and y_0 <= my <= x_0 + y:  # Se o click foi no tabuleiro
                         name = collumns[int((mx - x_0) // (x / 8))] + lines[int((my - y_0) // (y / 8))]
                         mqtt.sqrOut(name)
-                        acertou = mqtt.msgIn() #Espera um bool acertou
+                        acertou = mqtt.msgIn()
+                        acertou = int(acertou)
                         if acertou:
                             sqNew = mqtt.sqrIn() #Espera 2 numeros de 1 a 8 representando o quadrado no final da memoria
+                            #return CL_game(x_0, y_0, x, y, tx_0, ty_0, tFontSize, px_0, py_0, pFontSize, screen,
+                            #                fsq1, fsq2, fsq3, sq1x, sq1y, sq2x, sq2y, sq3x, sq3y, c1, c2, cDf,
+                            #                highlight, hlColor, timeRemaining, sq2, sq3, sqNew, bgColor, points+1)
                             return CL_game(x_0, y_0, x, y, tx_0, ty_0, tFontSize, px_0, py_0, pFontSize, screen,
                                             fsq1, fsq2, fsq3, sq1x, sq1y, sq2x, sq2y, sq3x, sq3y, c1, c2, cDf,
-                                            highlight, hlColor, timeRemaining, sq2, sq3, sqNew, bgColor, points+1)
+                                            highlight, hlColor, timeRemaining, sqNew, sqNew, sqNew, bgColor, points+1)
+
                         elif not acertou:
                             return CL_game(x_0, y_0, x, y, tx_0, ty_0, tFontSize, px_0, py_0, pFontSize, screen,
                                             fsq1, fsq2, fsq3, sq1x, sq1y, sq2x, sq2y, sq3x, sq3y, c1, c2, cDf,
-                                            highlight, hlColor, timeRemaining - decrease, sq2, sq3, sqNew, bgColor, points)
+                                            highlight, hlColor, timeRemaining - decrease, sq1, sq2, sq3, bgColor, points)
         pygame.display.flip()
 
 
@@ -87,13 +92,14 @@ def CL_game_test(x_0, y_0, x, y, tx_0, ty_0, tFontSize, px_0, py_0, pFontSize, s
         # Eventos
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
+                mqtt.msgOut('002')
                 running = False
             elif event.type == pygame.MOUSEBUTTONDOWN:
                 if event.button == 1:
                     mx, my = pygame.mouse.get_pos()
                     if x_0 <= mx <= x_0 + x and y_0 <= my <= x_0 + y:  # Se o click foi no tabuleiro
                         name = collumns[int((mx - x_0) // (x / 8))] + lines[int((my - y_0) // (y / 8))]
-                        #mqtt.sqrOut(name)
+                        mqtt.sqrOut(name)
                         #acertou = mqtt.msgIn() #Espera um bool acertou
                         acertou = name == sq1
                         if acertou:
@@ -223,7 +229,7 @@ def test():
 
     screen.fill(clr.background2)
     CL_game_test(x_0, y_0, x, y, 784, 300, 96, 864, 192, 80, screen, 80, 48, 40, 784, 520, 872, 520, 936, 520, clr.bwhite, 
-                clr.bblack, clr.white, None, clr.green, 30, 'a1', 'b2', 'e4', clr.background2, 0, 1)   
+                clr.bblack, clr.white, None, clr.green, 30, 'a1', 'b2', 'e4', clr.background2, 0, 0)   
     # Encerra o pygame
     pygame.quit()
     sys.exit()
