@@ -92,14 +92,14 @@ def CL_game_test(x_0, y_0, x, y, tx_0, ty_0, tFontSize, px_0, py_0, pFontSize, s
         # Eventos
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                mqtt.msgOut('002')
+                #mqtt.msgOut('002')
                 running = False
             elif event.type == pygame.MOUSEBUTTONDOWN:
                 if event.button == 1:
                     mx, my = pygame.mouse.get_pos()
                     if x_0 <= mx <= x_0 + x and y_0 <= my <= x_0 + y:  # Se o click foi no tabuleiro
                         name = collumns[int((mx - x_0) // (x / 8))] + lines[int((my - y_0) // (y / 8))]
-                        mqtt.sqrOut(name)
+                        #mqtt.sqrOut(name)
                         #acertou = mqtt.msgIn() #Espera um bool acertou
                         acertou = name == sq1
                         if acertou:
@@ -228,7 +228,7 @@ def test():
     y_0 = (screenHeight - y) // 2
 
     screen.fill(clr.background2)
-    CL_game_test(x_0, y_0, x, y, 784, 300, 96, 864, 192, 80, screen, 80, 48, 40, 784, 520, 872, 520, 936, 520, clr.bwhite, 
+    CL_game_test(x_0, y_0, x, y, 784, 300, 96, 864, 192, 80, screen, 80, 48, 40, 840, 520, 872, 520, 936, 520, clr.bwhite, 
                 clr.bblack, clr.white, None, clr.green, 30, 'a1', 'b2', 'e4', clr.background2, 0, 0)   
     # Encerra o pygame
     pygame.quit()
@@ -249,8 +249,8 @@ def testR():
     y_0 = (screenHeight - y) // 2
 
     screen.fill(clr.background2)
-    print(CL_game_R_test(x_0, y_0, x, y, 784, 300, 96, 864, 192, 80, screen, 784, 464, 80, cDf=clr.white))
+    print(CL_game_R_test(x_0, y_0, x, y, 784, 300, 96, 864, 192, 80, screen, 840, 464, 80, cDf=clr.white))
 
 
 if __name__ == '__main__':
-    test()
+    testR()

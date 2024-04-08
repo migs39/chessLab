@@ -134,10 +134,10 @@ def clear(path):
 
 init()
 def test():
-    #clear(path)
-    registerScore(0, 0, 1, scoresFile, namesFile, 6, 'migs2')
-    print((readScores(scoresFile)))
-    print(getHighscores(0, 0, 1, scoresFile, namesFile))
+    #print((readScores(scoresFile)))
+    print(getHighscores(1, 1, 1, scoresFile, namesFile))
+    clear(path)
 
 if __name__ == '__main__':
+    #clear(path)
     test()

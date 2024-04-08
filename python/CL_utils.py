@@ -13,8 +13,8 @@ buttonFont = os.path.join(fontsPath, 'buttons', 'Aboreto.ttf')
 
 #Funçoes de escrita
 def write_topmid(x_c, y_0, fontSize, screen, text, color = clrs.white, bg = clrs.background2, inflationx = 0, inflationy = 0, font = None):
-    font = pygame.font.Font(font, fontSize)
-    display = font.render(text, True, color)
+    fontR = pygame.font.Font(font, int(fontSize))
+    display = fontR.render(text, True, color)
     displayRect = display.get_rect()
     displayRect.midtop = (x_c, y_0)
     finalRect = displayRect.inflate(inflationx, inflationy)
@@ -24,8 +24,8 @@ def write_topmid(x_c, y_0, fontSize, screen, text, color = clrs.white, bg = clrs
     return(finalRect)
 
 def write_topleft(x_0, y_0, fontSize, screen, text, color = clrs.white, bg = clrs.background2, inflationx = 0, inflationy = 0, font = None):
-    font = pygame.font.Font(font, fontSize)
-    display = font.render(text, True, color)
+    fontR = pygame.font.Font(font, int(fontSize))
+    display = fontR.render(text, True, color)
     displayRect = display.get_rect()
     displayRect.topleft = (x_0, y_0)
     finalRect = displayRect.inflate(inflationx, inflationy)
@@ -35,8 +35,8 @@ def write_topleft(x_0, y_0, fontSize, screen, text, color = clrs.white, bg = clr
     return(finalRect)
 
 def write_midleft(x_0, y_c, fontSize, screen, text, color = clrs.white, bg = clrs.background2, inflationx = 0, inflationy = 0, font = None):
-    font = pygame.font.Font(font, fontSize)
-    display = font.render(text, True, color)
+    fontR = pygame.font.Font(font, int(fontSize))
+    display = fontR.render(text, True, color)
     displayRect = display.get_rect()
     displayRect.midleft = (x_0, y_c)
     finalRect = displayRect.inflate(inflationx, inflationy)
@@ -87,9 +87,7 @@ def randomSquare():
     numeros = ['8', '7', '6', '5', '4', '3', '2', '1']
     
     primeiro_caracter = random.choice(letras)
-    mqtt.msgOut(str(letras.index(primeiro_caracter) + 1))
     segundo_caracter = random.choice(numeros)
-    mqtt.msgOut(segundo_caracter)
     sq = primeiro_caracter + segundo_caracter
     #print(sq)
     return sq
